@@ -29,7 +29,7 @@
 @brand-warning:         #f0ad4e;
 @brand-danger:          #d9534f;
 
-@theme-background:      #282D28;
+@theme-background:      lighten(#001B16, 5%);
 @theme-green:           rgb(57, 171, 111);
 //== Scaffolding
 //
@@ -380,9 +380,9 @@
 
 // Navbar links
 @navbar-default-link-color:                @theme-green;
-@navbar-default-link-hover-color:          @theme-green;
+@navbar-default-link-hover-color:          darken(@theme-green, 10%);
 @navbar-default-link-hover-bg:             transparent;
-@navbar-default-link-active-color:          @theme-green;
+@navbar-default-link-active-color:         @theme-green;
 @navbar-default-link-active-bg:            darken(@navbar-default-bg, 6.5%);
 @navbar-default-link-disabled-color:       #ccc;
 @navbar-default-link-disabled-bg:          transparent;

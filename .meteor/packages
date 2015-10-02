@@ -23,3 +23,5 @@ iron:router
 coffeescript
 ejson
 nemo64:bootstrap
+ian:accounts-ui-bootstrap-3
+angular
