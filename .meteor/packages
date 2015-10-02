@@ -25,3 +25,5 @@ ejson
 nemo64:bootstrap
 ian:accounts-ui-bootstrap-3
 angular
+accounts-facebook
+accounts-weibo
