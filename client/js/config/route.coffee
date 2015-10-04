@@ -1,6 +1,5 @@
-Router.configure layoutTemplate: 'main'
-Router.map ->
-  @route 'home',
-    path: '/'
-    template: 'index'
-  return
+#Router.configure layoutTemplate: 'tplate'
+#Router.map ->
+#  @route 'main',
+#    path: '/'
+#  return

@@ -1,0 +1,1 @@
+@DianPings = new Mongo.Collection 'dianPings'
