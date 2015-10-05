@@ -1,4 +1,13 @@
 dianPing = angular.module('dianPing', ['angular-meteor', 'uiGmapgoogle-maps'])
+  .config 'uiGmapGoogleMapApiProvider',  (GoogleMapApi) ->
+    GoogleMapApi.configure
+      key: 'AIzaSyBVPdFgguDJjJPsJt1iCTXLIHPUORucziQ',
+      v: '3.17',
+      libraries: 'places'
+#  .run '$templateCache', ($templateCache) ->
+#    $templateCache.put('searchbox.tpl.html', '<input id="pac-input" class="pac-controls" type="text" placeholder="Search">')
+#    $templateCache.put('window.tpl.html', '<div ng-controller="WindowCtrl" ng-init="showPlaceDetails(parameter)">{{place.name}}</div>')
+
 
 #register services
 dianPing.factory 'dpService', ->
@@ -57,6 +66,24 @@ dianPing.controller 'composer', [
       if $scope.comment.title and $scope.comment.message
         $scope.comment.createdTime = moment().valueOf()
         $scope.comments.push $scope.comment
+    events = places_changed: (searchBox) ->
+      place = searchBox.getPlaces()
+      if !place
+        console.log 'no place data :('
+        return
+      $scope.map =
+        'center':
+          'latitude': place[0].geometry.location.lat()
+          'longitude': place[0].geometry.location.lng()
+        'zoom': 18
+      $scope.marker =
+        id: 0
+        coords:
+          latitude: place[0].geometry.location.lat()
+          longitude: place[0].geometry.location.lng()
+#    $scope.searchbox =
+#      template: 'searchbox.tpl.html'
+#      events: events
 ]
 
 dianPing.controller 'comments', [
