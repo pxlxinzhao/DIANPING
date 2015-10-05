@@ -24,18 +24,32 @@ dianPing.controller 'composer', [
     $scope.comment.title = ''
     $scope.comment.message = ''
     $scope.idkey = 'tempKey'
+    $scope.markerIndex = 0
     $scope.map =
       center:
         latitude: 45
         longitude: -79
       zoom: 8
-      marker:
-        options: draggable: true
-        events: dragend: (marker, eventName, args) ->
-          if !$scope.comment.location
-            $scope.comment.location = {}
-          $scope.comment.location.latitude = marker.getPosition().lat()
-          $scope.comment.location.longitude = marker.getPosition().lng()
+      markers: []
+      events:
+        click: (map, eventName, originalEventArgs) ->
+          e = originalEventArgs[0]
+          lat = e.latLng.lat()
+          lon = e.latLng.lng()
+          marker =
+            id: 'marker' + $scope.markerIndex++
+            coords:
+              latitude: lat
+              longitude: lon
+            options: draggable: true
+            events: dragend: (marker, eventName, args) ->
+              $scope.map.markers[0].coords.latitude = marker.getPosition().lat()
+              $scope.map.markers[0].coords.longitude = marker.getPosition().lng()
+              console.log $scope.map.markers[0].coords
+          $scope.map.markers.pop()
+          $scope.map.markers.push marker
+          console.log $scope.map.markers
+          $scope.$apply()
     $scope.save = ->
       if $scope.comment.title and $scope.comment.message
         $scope.comment.createdTime = moment().valueOf()
@@ -51,11 +65,18 @@ dianPing.controller 'comments', [
       getFacebookPhotoUrlById comment.owner
     $scope.remove = (comment) ->
       $scope.comments.splice($scope.comments.indexOf(comment), 1)
+    $scope.getFooter = (comment) ->
+      'Posted by ' + getUsername(comment.owner) + ' on ' + moment(comment.createdTime).format('MM/DD/YYYY HH:mm:ss')
 ]
 
 ##define functions
 getUserById = (userId) ->
   Meteor.users.findOne({_id: userId})
+
+getUsername = (userId) ->
+  user = getUserById(userId)
+  console.log user
+  if user and user.profile then user.profile.name else 'UNKNOWN'
 
 getCurrentUsername = ->
   if Meteor.user() and Meteor.user().profile then  Meteor.user().profile.name else 'UNKNOWN'
