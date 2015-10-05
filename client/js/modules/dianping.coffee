@@ -1,4 +1,4 @@
-dianPing = angular.module('dianPing', ['angular-meteor'])
+dianPing = angular.module('dianPing', ['angular-meteor', 'uiGmapgoogle-maps'])
 
 #register services
 dianPing.factory 'dpService', ->
@@ -19,17 +19,27 @@ dianPing.controller 'composer', [
   '$meteor'
   ($scope, $meteor) ->
     $scope.comments = $meteor.collection DianPings
-    $scope.title = ''
-    $scope.message = ''
-    $scope.print = ->
-      console.log $scope.title, $scope.message
+    $scope.comment = {}
+    $scope.comment.owner = Meteor.userId()
+    $scope.comment.title = ''
+    $scope.comment.message = ''
+    $scope.idkey = 'tempKey'
+    $scope.map =
+      center:
+        latitude: 45
+        longitude: -79
+      zoom: 8
+      marker:
+        options: draggable: true
+        events: dragend: (marker, eventName, args) ->
+          if !$scope.comment.location
+            $scope.comment.location = {}
+          $scope.comment.location.latitude = marker.getPosition().lat()
+          $scope.comment.location.longitude = marker.getPosition().lng()
     $scope.save = ->
-      if $scope.title and $scope.message then
-      $scope.comments.push
-        owner: Meteor.userId()
-        title: $scope.title
-        message: $scope.message
-        createdTime: moment().valueOf()
+      if $scope.comment.title and $scope.comment.message
+        $scope.comment.createdTime = moment().valueOf()
+        $scope.comments.push $scope.comment
 ]
 
 dianPing.controller 'comments', [
@@ -39,6 +49,8 @@ dianPing.controller 'comments', [
     $scope.comments = $meteor.collection DianPings
     $scope.getPhoto = (comment) ->
       getFacebookPhotoUrlById comment.owner
+    $scope.remove = (comment) ->
+      $scope.comments.splice($scope.comments.indexOf(comment), 1)
 ]
 
 ##define functions

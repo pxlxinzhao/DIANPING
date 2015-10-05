@@ -3,6 +3,9 @@
 body {
   background-image: url('img/green-geometry.jpg');
 }
+.right {
+  float: right;
+}
 
 //navbar
 @media (min-width: 768px){
@@ -40,6 +43,7 @@ body {
 //comments
 .comments-wrapper {
   ul {
+    list-style-type: none;
     margin: 0px;
     padding: 0px;
     li {
@@ -48,8 +52,20 @@ body {
       }
       .panel.panel-default {
         margin-left: 60px;
+        position: relative;
+      }
+      .comment-remove {
+        position: absolute;
+        right:5px;
+        top:5px;
       }
     }
 
   }
+}
+
+//composer
+.angular-google-map-container {
+  height: 200px;
+  width:100%;
 }

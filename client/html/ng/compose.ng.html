@@ -2,9 +2,17 @@
     <div class="panel-body">
         <div class="compose-wrapper" ng-controller="composer">
             <form role="form">
+                <div class="angular-google-map-container">
+                    <ui-gmap-google-map center="map.center"
+                                        events="map.events" zoom="map.zoom">
+                        <ui-gmap-marker coords="map.center" options="map.marker.options"
+                                        events="map.marker.events" idkey="idkey">
+                        </ui-gmap-marker>
+                    </ui-gmap-google-map>
+                </div>
                 <div class="form-group">
                     <label for="compose-title">Title:</label>
-                    <input type="text" ng-model="title" class="form-control" id="compose-title">
+                    <input type="text" ng-model="comment.title" class="form-control" id="compose-title">
                 </div>
                 <!--<div class="form-group">-->
                     <!--<label for="compose-message">Message:</label>-->
@@ -12,7 +20,7 @@
                 <!--</div>-->
                 <div class="form-group">
                     <label for="compose-message">Message:</label>
-                    <textarea  ng-model="message" class="form-control" rows="5" id="compose-message"></textarea>
+                    <textarea  ng-model="comment.message" class="form-control" rows="5" id="compose-message"></textarea>
                 </div>
                 <!--<div class="checkbox">-->
                     <!--<label><input type="checkbox"> Remember me</label>-->
