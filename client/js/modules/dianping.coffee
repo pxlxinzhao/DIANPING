@@ -6,12 +6,15 @@ dianPing.factory 'dpService', ->
 
 dianPing.controller 'userPanel', [
   '$scope'
+  '$meteor'
   'dpService'
-  ($scope, dpService) ->
-    console.log Meteor.user()
-    console.log Meteor.userId()
+  '$rootScope'
+  ($scope, $meteor, dpService, $rootScope) ->
+    $scope.users = $meteor.collection Meteor.users
     $scope.photoUrl = dpService.getFacebookPhotoUrl Meteor.user()
     $scope.username = getCurrentUsername()
+    $scope.$watch $rootScope.currentUser, ->
+      console.log $rootScope.currentUser
 ]
 
 dianPing.controller 'composer', [
@@ -75,7 +78,7 @@ getUserById = (userId) ->
 
 getUsername = (userId) ->
   user = getUserById(userId)
-  console.log user
+#  console.log user
   if user and user.profile then user.profile.name else 'UNKNOWN'
 
 getCurrentUsername = ->
@@ -93,5 +96,5 @@ getFacebookPhotoUrl = (user) ->
   if user and user.services and user.services.facebook
     'http://graph.facebook.com/' + user.services.facebook.id + '/picture'
   else
-    'img/locky.jpg'
+    'img/default.png'
 ##
