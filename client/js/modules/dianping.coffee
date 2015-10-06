@@ -1,17 +1,21 @@
+API_KEY = 'AIzaSyBVPdFgguDJjJPsJt1iCTXLIHPUORucziQ'
+
+
 dianPing = angular.module('dianPing', ['angular-meteor', 'uiGmapgoogle-maps'])
-  .config 'uiGmapGoogleMapApiProvider',  (GoogleMapApi) ->
+  .config ['uiGmapGoogleMapApiProvider',  (GoogleMapApi) ->
     GoogleMapApi.configure
-      key: 'AIzaSyBVPdFgguDJjJPsJt1iCTXLIHPUORucziQ',
+      key: API_KEY,
       v: '3.17',
       libraries: 'places'
-#  .run '$templateCache', ($templateCache) ->
-#    $templateCache.put('searchbox.tpl.html', '<input id="pac-input" class="pac-controls" type="text" placeholder="Search">')
-#    $templateCache.put('window.tpl.html', '<div ng-controller="WindowCtrl" ng-init="showPlaceDetails(parameter)">{{place.name}}</div>')
-
+  ]
+  .run ['$templateCache', ($templateCache) ->
+    $templateCache.put('searchbox.tpl.html', '<input id="pac-input" class="pac-controls" type="text" placeholder="Search">')
+    $templateCache.put('window.tpl.html', '<div ng-controller="WindowCtrl" ng-init="showPlaceDetails(parameter)">{{place.name}}</div>')
+  ]
 
 #register services
 dianPing.factory 'dpService', ->
-  getFacebookPhotoUrl: getFacebookPhotoUrl
+  getFacebookPhotoUrl: getFacebookPhotoUrlByUser
 
 dianPing.controller 'userPanel', [
   '$scope'
@@ -19,11 +23,11 @@ dianPing.controller 'userPanel', [
   'dpService'
   '$rootScope'
   ($scope, $meteor, dpService, $rootScope) ->
-    $scope.users = $meteor.collection Meteor.users
-    $scope.photoUrl = dpService.getFacebookPhotoUrl Meteor.user()
-    $scope.username = getCurrentUsername()
-    $scope.$watch $rootScope.currentUser, ->
-      console.log $rootScope.currentUser
+    Tracker.autorun ->
+      if Meteor.user()
+        $scope.users = $meteor.collection Meteor.users
+        $scope.photoUrl = dpService.getFacebookPhotoUrl Meteor.user()
+        $scope.username = getCurrentUsername()
 ]
 
 dianPing.controller 'composer', [
@@ -66,6 +70,7 @@ dianPing.controller 'composer', [
       if $scope.comment.title and $scope.comment.message
         $scope.comment.createdTime = moment().valueOf()
         $scope.comments.push $scope.comment
+
     events = places_changed: (searchBox) ->
       place = searchBox.getPlaces()
       if !place
@@ -81,9 +86,16 @@ dianPing.controller 'composer', [
         coords:
           latitude: place[0].geometry.location.lat()
           longitude: place[0].geometry.location.lng()
-#    $scope.searchbox =
-#      template: 'searchbox.tpl.html'
-#      events: events
+
+    $scope.searchbox =
+      events: events
+      template: 'searchbox.tpl.html'
+      position: 'top-right'
+      options:
+        bounds: {}
+        visible: true
+
+
 ]
 
 dianPing.controller 'comments', [
@@ -96,14 +108,14 @@ dianPing.controller 'comments', [
     $scope.remove = (comment) ->
       $scope.comments.splice($scope.comments.indexOf(comment), 1)
     $scope.getFooter = (comment) ->
-      'Posted by ' + getUsername(comment.owner) + ' on ' + moment(comment.createdTime).format('MM/DD/YYYY HH:mm:ss')
+      'Posted by ' + getUsernameById(comment.owner) + ' on ' + moment(comment.createdTime).format('MM/DD/YYYY HH:mm:ss')
 ]
 
 ##define functions
 getUserById = (userId) ->
   Meteor.users.findOne({_id: userId})
 
-getUsername = (userId) ->
+getUsernameById = (userId) ->
   user = getUserById(userId)
 #  console.log user
   if user and user.profile then user.profile.name else 'UNKNOWN'
@@ -115,9 +127,9 @@ getFacebookPhotoUrlById = (userId) ->
   if userId
     user = getUserById(userId)
 #    console.log 'user: ', user
-    getFacebookPhotoUrl user
+    getFacebookPhotoUrlByUser user
 
-getFacebookPhotoUrl = (user) ->
+getFacebookPhotoUrlByUser = (user) ->
 #  user = Meteor.user()
 #  console.log user
   if user and user.services and user.services.facebook
