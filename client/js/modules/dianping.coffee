@@ -1,5 +1,5 @@
 API_KEY = 'AIzaSyBVPdFgguDJjJPsJt1iCTXLIHPUORucziQ'
-
+TIME_FORMAT = 'MM/DD/YYYY HH:mm:ss'
 
 dianPing = angular.module('dianPing', ['angular-meteor', 'uiGmapgoogle-maps'])
   .config ['uiGmapGoogleMapApiProvider',  (GoogleMapApi) ->
@@ -128,7 +128,9 @@ dianPing.controller 'comments', [
     $scope.remove = (comment) ->
       $scope.comments.splice($scope.comments.indexOf(comment), 1)
     $scope.getFooter = (comment) ->
-      'Posted by ' + getUsernameById(comment.owner) + ' on ' + moment(comment.createdTime).format('MM/DD/YYYY HH:mm:ss')
+      'Posted by ' + getUsernameById(comment.owner) + ' on ' + moment(comment.createdTime).format(TIME_FORMAT)
+      console.log comment.location
+      console.log Meteor.user().position
 ]
 
 ##define functions
