@@ -26,13 +26,12 @@ dianPing.controller 'userPanel', [
     initial = true
     Tracker.autorun ->
       if Meteor.user()
-        initial = false
 #        $scope.users = $meteor.collection Meteor.users
         $scope.photoUrl = dpService.getFacebookPhotoUrl Meteor.user()
         $scope.username = getCurrentUsername()
         $scope.address = Meteor.user().address
-        console.log  Meteor.user()
-        if (!Meteor.user().position || !Meteor.user().address) && initial
+        if initial or (!Meteor.user().position || !Meteor.user().address)
+          initial = false
           navigator.geolocation.getCurrentPosition (position) ->
             if position
               pos = _.clone position.coords
@@ -42,12 +41,12 @@ dianPing.controller 'userPanel', [
               geocoder.geocode { 'latLng': latlng }, (results, status) ->
                 if status == google.maps.GeocoderStatus.OK
                   if results[1]
-  #                  console.log results[1]
+#                    console.log results[1]
                     Meteor.call 'updateCurrentUserAddress', results[1].formatted_address
                   else
-  #                  console.log 'Location not found'
+#                    console.log 'Location not found'
                 else
-  #                console.log 'Geocoder failed due to: ' + status
+#                  console.log 'Geocoder failed due to: ' + status
 ]
 
 dianPing.controller 'composer', [
@@ -81,20 +80,22 @@ dianPing.controller 'composer', [
             events: dragend: (marker, eventName, args) ->
               $scope.map.markers[0].coords.latitude = marker.getPosition().lat()
               $scope.map.markers[0].coords.longitude = marker.getPosition().lng()
-              console.log $scope.map.markers[0].coords
+#              console.log $scope.map.markers[0].coords
           $scope.map.markers.pop()
           $scope.map.markers.push marker
-          console.log $scope.map.markers
+#          console.log $scope.map.markers
           $scope.$apply()
     $scope.save = ->
       if $scope.comment.title and $scope.comment.message
         $scope.comment.createdTime = moment().valueOf()
+        if $scope.map.markers[0] && $scope.map.markers[0].coords
+          $scope.comment.position = $scope.map.markers[0].coords
         $scope.comments.push $scope.comment
 
     events = places_changed: (searchBox) ->
       place = searchBox.getPlaces()
       if !place
-        console.log 'no place data :('
+#        console.log 'no place data :('
         return
       $scope.map =
         'center':
@@ -129,8 +130,12 @@ dianPing.controller 'comments', [
       $scope.comments.splice($scope.comments.indexOf(comment), 1)
     $scope.getFooter = (comment) ->
       'Posted by ' + getUsernameById(comment.owner) + ' on ' + moment(comment.createdTime).format(TIME_FORMAT)
-      console.log comment.location
-      console.log Meteor.user().position
+      if Meteor.user()
+        console.log comment.position
+        console.log Meteor.user().position
+      else
+        console.log 'User can not be found when loading comments'
+
 ]
 
 ##define functions
