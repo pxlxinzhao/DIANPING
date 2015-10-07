@@ -1,1 +1,5 @@
-#Metero.publish ->
+Meteor.publish 'allUsers', ->
+  Meteor.users.find()
+
+Meteor.publish 'allComments', ->
+  DianPings.find()
