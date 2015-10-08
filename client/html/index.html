@@ -1,10 +1,12 @@
 <head>
+    <base href="/">
     <title>DIANPING</title>
 </head>
 
 <body ng-app="dianPing">
     <div ng-include="'client/html/ng/nav.ng.html'"></div>
-    <div ng-include="'client/html/ng/main.ng.html'"></div>
+    <div ui-view></div>
+    <!--<div ng-include="'client/html/ng/main.ng.html'"></div>-->
 </body>
 
 
