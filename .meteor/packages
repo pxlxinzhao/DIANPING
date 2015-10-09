@@ -21,7 +21,6 @@ less
 coffeescript
 ejson
 nemo64:bootstrap
-ian:accounts-ui-bootstrap-3
 angular
 accounts-facebook
 service-configuration
@@ -30,3 +29,4 @@ urigo:angular-blaze-template
 mrt:moment
 angularui:angular-google-maps
 angularui:angular-ui-router
+ian:accounts-ui-bootstrap-3

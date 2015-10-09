@@ -2,12 +2,6 @@ API_KEY = 'AIzaSyBVPdFgguDJjJPsJt1iCTXLIHPUORucziQ'
 TIME_FORMAT = 'MM/DD/YYYY HH:mm:ss'
 
 dianPing = angular.module('dianPing', ['angular-meteor', 'uiGmapgoogle-maps', 'ui.router'])
-  .config ['uiGmapGoogleMapApiProvider',  (GoogleMapApi) ->
-    GoogleMapApi.configure
-      key: API_KEY,
-      v: '3.17',
-      libraries: 'places'
-  ]
   .config [
     '$urlRouterProvider'
     '$stateProvider'
@@ -16,11 +10,17 @@ dianPing = angular.module('dianPing', ['angular-meteor', 'uiGmapgoogle-maps', 'u
       $locationProvider.html5Mode true
       $stateProvider.state('index',
         url: '/'
-        templateUrl: 'client/html/main.ng.html')
+        templateUrl: 'client/html/ng/main.ng.html')
       .state 'profile',
         url: '/profile'
-        templateUrl: 'client/html/profile.ng.html'
+        templateUrl: 'client/html/ng/profile.ng.html'
       $urlRouterProvider.otherwise '/'
+  ]
+  .config ['uiGmapGoogleMapApiProvider',  (GoogleMapApi) ->
+    GoogleMapApi.configure
+      key: API_KEY,
+      v: '3.17',
+      libraries: 'places'
   ]
   .run ['$templateCache', ($templateCache) ->
     $templateCache.put('searchbox.tpl.html', '<input id="pac-input" class="pac-controls" type="text" placeholder="Search">')
@@ -142,18 +142,20 @@ dianPing.controller 'comments', [
       getFacebookPhotoUrlById comment.owner
     $scope.remove = (comment) ->
       $scope.comments.splice($scope.comments.indexOf(comment), 1)
-    $scope.getFooter = (comment) ->
+    $scope.getTime = (comment) ->
       'Posted by ' + getUsernameById(comment.owner) + ' on ' + moment(comment.createdTime).format(TIME_FORMAT)
+    $scope.getDist = (comment) ->
       if Meteor.user()
         console.log 'comment', comment.location
-#        console.log Meteor.user().position
+        #        console.log Meteor.user().position
         userPos =
           latitude: Meteor.user().position.latitude
           longitude: Meteor.user().position.longitude
-#        console.log 'userPos', userPos
+        #        console.log 'userPos', userPos
         if comment.location and userPos
           Math.round(calculateDistance(comment.location, userPos)*10)/10  + 'Km'
 #        console.log 'User can not be found when loading comments'
+
 ]
 
 ##define functions
