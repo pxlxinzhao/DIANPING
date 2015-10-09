@@ -1,7 +1,8 @@
 API_KEY = 'AIzaSyBVPdFgguDJjJPsJt1iCTXLIHPUORucziQ'
 TIME_FORMAT = 'MM/DD/YYYY HH:mm:ss'
 
-dianPing = angular.module('dianPing', ['angular-meteor', 'uiGmapgoogle-maps', 'ui.router'])
+@dianPing = angular.module('dianPing', ['angular-meteor', 'uiGmapgoogle-maps', 'ui.router',
+'ngMaterial', 'ngMessages'])
   .config [
     '$urlRouterProvider'
     '$stateProvider'

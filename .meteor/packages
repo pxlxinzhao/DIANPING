@@ -21,7 +21,6 @@ less
 coffeescript
 ejson
 nemo64:bootstrap
-angular
 accounts-facebook
 service-configuration
 accounts-password
@@ -30,3 +29,8 @@ mrt:moment
 angularui:angular-google-maps
 angularui:angular-ui-router
 ian:accounts-ui-bootstrap-3
+angular
+angularjs:angular-messages
+angularjs:angular-sanitize
+angular:angular-aria
+angular:angular-material
