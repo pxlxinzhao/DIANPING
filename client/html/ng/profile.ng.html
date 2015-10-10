@@ -1,16 +1,16 @@
 <div class="container">
     <div class="row dark">
 
-        <div class="col-md-3" ng-controller="profileNavCtrl">
+        <div class="col-md-3 col-lg-2" ng-controller="profileNavCtrl">
             <md-list ng-controller="profileNavCtrl" ng-cloak>
-                <md-list-item ng-repeat="navItem in nav">
+                <md-list-item ng-repeat="navItem in nav" class="profile-nav">
                     <md-checkbox class="hidden"></md-checkbox>
                     <p>{{navItem}} </p>
                 </md-list-item>
             </md-list>
         </div>
 
-        <div class="col-md-9">
+        <div class="col-md-9 col-lg-10">
             <div ng-controller="profileCtrl" layout="column" ng-cloak md-theme="docs-dark">
                 <md-content layout-padding layout="row" layout-sm="column">
                     <md-input-container>

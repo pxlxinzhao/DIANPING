@@ -1,27 +1,46 @@
-<div class="comments-wrapper" ng-controller="comments">
+<div class="comments-wrapper" ng-controller="comments" md-theme="docs-dark">
     <div class="panel panel-default">
         <div class="panel-body">
+            <!--<md-list class="docs-dark">-->
+                <!--&lt;!&ndash;<md-subheader class="md-no-sticky">3 line item</md-subheader>&ndash;&gt;-->
+                <!--<md-list-item class="md-3-line" ng-repeat="comment in comments">-->
+                    <!--<img ng-src="{{getPhoto(comment)}}" class="md-avatar" alt="alt" />-->
+                    <!--<div class="md-list-item-text" layout="column">-->
+                        <!--<h3>{{comment.title}}</h3>-->
+                        <!--&lt;!&ndash;<h4>{{comment.title}}</h4>&ndash;&gt;-->
+                        <!--<p>{{comment.message}}</p>-->
+                    <!--</div>-->
+                <!--</md-list-item>-->
+            <!--</md-list>-->
             <ul>
-                <li ng-show="!comments.length"><div class="panel panel-default">
-                    <div class="panel-body">
-                        <h4>There is nothing here yet..<br> Say something to the world!</h4>
+                <li ng-show="!comments.length">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <h4>There is nothing here yet..<br> Say something to the world!</h4>
+                        </div>
                     </div>
-                </div></li>
+                </li>
                 <li ng-repeat="comment in comments">
-                    <img class="img-circle img-normal" ng-src="{{getPhoto(comment)}}" alt="avatar">
+                    <div class="img-container">
+                        <img class="img-circle img-normal" ng-src="{{getPhoto(comment)}}" alt="avatar">
+                        <p>{{getOwner(comment.owner)}}</p>
+                    </div>
+
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <h3 class="panel-title">
                                 {{comment.title}}
                             </h3>
-                            <button class="comment-remove" ng-click="remove(comment)">Remove</button>
+                            <md-button class="md-raised md-warn comment-remove" ng-click="remove(comment)">Remove</md-button>
+                            <!--<button class="comment-remove" ng-click="remove(comment)">Remove</button>-->
                         </div>
                         <div class="panel-body">
                             <p>{{comment.message}}</p>
                         </div>
                         <div class="panel-footer">
+                            <!--<div ng-include="'panelFooter.tpl.html'"></div>-->
                             <small>{{getTime(comment)}}</small>
-                            <small class="comment-footer-left">{{getDist(comment)}}</small>
+                            <small class="dist">{{getDist(comment)}}</small>
                         </div>
                     </div>
                 </li>

@@ -7,7 +7,8 @@ dianPing.controller('profileNavCtrl', ($scope) ->
     'Edit Profile',
     'Photos',
     'Favorites',
-    'Messages'
+    'Messages',
+    'Preview'
   ]
 )
 
@@ -23,6 +24,4 @@ dianPing.controller('profileCtrl', ($scope) ->
     state: 'CA'
     biography: 'Loves kittens, snowboarding, and can type at 130 WPM.\n\nAnd rumor has it she bouldered up Castle Craig!'
     postalCode: '94043'
-).config ($mdThemingProvider) ->
-# Configure a dark theme with primary foreground yellow
-  $mdThemingProvider.theme('docs-dark', 'default').primaryPalette('green').dark()
+)

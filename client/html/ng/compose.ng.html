@@ -12,22 +12,37 @@
                         </ui-gmap-search-box>
                     </ui-gmap-google-map>
                 </div>
-                <div class="form-group">
-                    <label for="compose-title">Title:</label>
-                    <input type="text" ng-model="comment.title" class="form-control" id="compose-title">
-                </div>
+                <!--<div class="form-group">-->
+                    <!--<label for="compose-title">Title:</label>-->
+                    <!--<input type="text" ng-model="comment.title" class="form-control" id="compose-title">-->
+                <!--</div>-->
+                <!--&lt;!&ndash;<div class="form-group">&ndash;&gt;-->
+                    <!--&lt;!&ndash;<label for="compose-message">Message:</label>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<input type="text" ng-model="message" class="form-control" id="compose-message">&ndash;&gt;-->
+                <!--&lt;!&ndash;</div>&ndash;&gt;-->
                 <!--<div class="form-group">-->
                     <!--<label for="compose-message">Message:</label>-->
-                    <!--<input type="text" ng-model="message" class="form-control" id="compose-message">-->
+                    <!--<textarea  ng-model="comment.message" class="form-control" rows="5" id="compose-message"></textarea>-->
                 <!--</div>-->
-                <div class="form-group">
-                    <label for="compose-message">Message:</label>
-                    <textarea  ng-model="comment.message" class="form-control" rows="5" id="compose-message"></textarea>
-                </div>
-                <!--<div class="checkbox">-->
-                    <!--<label><input type="checkbox"> Remember me</label>-->
-                <!--</div>-->
-                <button ng-click="save()" class="btn btn-default">Submit</button>
+                <!--&lt;!&ndash;<div class="checkbox">&ndash;&gt;-->
+                    <!--&lt;!&ndash;<label><input type="checkbox"> Remember me</label>&ndash;&gt;-->
+                <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                <!--<button ng-click="save()" class="btn btn-default">Submit</button>-->
+                <md-content layout-padding>
+                    <form name="userForm">
+                        <md-input-container flex>
+                            <label>Title</label>
+                            <input ng-model="comment.title">
+                        </md-input-container>
+
+                        <md-input-container flex>
+                            <label>Message</label>
+                            <textarea ng-model="comment.message" columns="1" md-maxlength="150"></textarea>
+                        </md-input-container>
+
+                        <md-button ng-click="save()" class="md-raised md-primary">Publish</md-button>
+                    </form>
+                </md-content>
             </form>
         </div>
     </div>

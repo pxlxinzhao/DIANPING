@@ -19,8 +19,11 @@ html, body {
 }
 
 //user panel
+
 .self-panel{
   display: flex;
+  color: #eee;
+
   .flex-direction(column);
   .align-content(center);
   .justify-content(center);
@@ -30,6 +33,7 @@ html, body {
     .align-self(center)
   }
   small {
+    color: darkgray;
     .align-self(center)
   }
   p{
@@ -48,15 +52,31 @@ html, body {
 
 //comments
 .comments-wrapper {
+  .md-list-item-text {
+    color: #eee;
+  }
   ul {
     list-style-type: none;
     margin: 0px;
     padding: 0px;
     li {
-      img {
+      .img-container {
+        display: flex;
         float: left;
+        .flex-direction(column);
+        img {
+          .align-self(center)
+        }
+        p {
+          width: auto;
+          margin: 5px auto;
+          color: @brand-primary;
+          font-size: 1rem;
+          .align-self(center)
+        }
       }
       .panel.panel-default {
+        color: #eee;
         margin-left: 60px;
         position: relative;
       }
@@ -65,18 +85,24 @@ html, body {
         right:5px;
         top:5px;
       }
+      .panel-heading {
+        color: @theme-green;
+        border-top: 0px;
+        background-color: @theme-background;
+      }
       .panel-footer {
-        //display: flex;
-        //.flex-direction(row-reverse);
+        border-top: 0px;
+        background-color: @theme-background;
         small {
+          color: darkgray;
           line-height: 20px;
         }
-        .comment-footer-left {
+        .dist {
+          color: @theme-yellow;
           float: right;
         }
       }
     }
-
   }
 }
 
@@ -87,4 +113,9 @@ html, body {
   .pac-controls {
     width: 150px;
   }
+}
+
+//profile
+.profile-nav {
+  color: @theme-red;
 }
