@@ -33,7 +33,7 @@
                                 <small>{{getTime(comment)}}</small>
                                 <small class="dist">{{getDist(comment)}}</small>
                             </h3>
-                            <md-button class="md-raised md-warn comment-remove" aria-label="remove" ng-click="remove(comment)">
+                            <md-button class="md-raised md-warn comment-remove" aria-label="remove" ng-click="showConfirm(comment)">
                                 <!--ng-click="remove(comment)"-->
                                 <ng-if>
 

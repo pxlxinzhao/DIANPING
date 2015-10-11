@@ -4,7 +4,8 @@
 dianPing.controller 'comments', [
   '$scope'
   '$meteor'
-  ($scope, $meteor) ->
+  '$mdDialog'
+  ($scope, $meteor, $mdDialog) ->
     $meteor.subscribe 'allComments', {
       sort: {
         createdTime: 1
@@ -60,8 +61,16 @@ dianPing.controller 'comments', [
         $scope.likes[0].likes.splice $scope.likes[0].likes.indexOf 'null', 1
 #      console.log $scope.likes[0]
 
-
-
+    $scope.showConfirm = (comment) ->
+# Appending dialog to document.body to cover sidenav in docs app
+      confirm = $mdDialog.confirm().title('Would you like to delete your comment?')
+        .content('This action can not be reverted')
+        .ariaLabel('Lucky day')
+        .ok('Delete')
+        .cancel('Cancel')
+      $mdDialog.show(confirm).then (->
+        $scope.remove(comment)
+      )
 ]
 .filter 'commentFilter', [ ->
   (items) ->

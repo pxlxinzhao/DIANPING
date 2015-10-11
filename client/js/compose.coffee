@@ -2,7 +2,13 @@
 dianPing.controller 'composer', [
   '$scope'
   '$meteor'
-  ($scope, $meteor) ->
+  'uiGmapIsReady'
+  ($scope, $meteor, IsReady) ->
+
+    IsReady.promise().then (maps) ->
+      $scope.gMap = maps[0].map
+
+    $scope.showMap = true
     $scope.comments = $meteor.collection DianPings
     $scope.comment = {}
     $scope.comment.owner = Meteor.userId()
@@ -18,6 +24,7 @@ dianPing.controller 'composer', [
       markers: []
       events:
         click: (map, eventName, originalEventArgs) ->
+#          console.log map == $scope.gMap
           e = originalEventArgs[0]
           lat = e.latLng.lat()
           lon = e.latLng.lng()
@@ -70,6 +77,17 @@ dianPing.controller 'composer', [
       options:
         bounds: {}
         visible: true
+
+    $scope.toggleMap = ->
+      if $scope.showMap
+        $scope.showMap = false
+      else
+        $scope.showMap = true
+        console.log $scope.gMap
+        if $scope.gMap
+          #this is important
+          google.maps.event.trigger($scope.gMap, 'resize')
+
 
 
 ]
