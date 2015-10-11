@@ -2,6 +2,7 @@
 
 //comments
 .comments-wrapper {
+  .box-shadow-default;
   .md-list-item-text {
     color: #eee;
   }
@@ -63,6 +64,9 @@
           color: @theme-red;
         }
         .liked {
+          &:hover {
+            color: lighten(@theme-red, 10%)
+          }
           color: @theme-red;
         }
         //small {

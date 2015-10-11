@@ -1,17 +1,17 @@
 <div class="panel panel-default">
     <div class="panel-body">
         <div class="compose-wrapper" ng-controller="composer">
-            <form role="form">
-                <!--<div class="angular-google-map-container">-->
-                    <!--<ui-gmap-google-map center="map.center"-->
-                                        <!--events="map.events" zoom="map.zoom">-->
-                        <!--<ui-gmap-marker ng-repeat="marker in map.markers" coords="marker.coords" options="marker.options"-->
-                                        <!--events="marker.events" idkey="marker.id">-->
-                        <!--</ui-gmap-marker>-->
-                        <!--<ui-gmap-search-box template="searchbox.template" events="searchbox.events" position="BOTTOM_RIGHT">-->
-                        <!--</ui-gmap-search-box>-->
-                    <!--</ui-gmap-google-map>-->
-                <!--</div>-->
+            <form role="form" md-theme="docs-dark">
+                <div class="angular-google-map-container">
+                    <ui-gmap-google-map center="map.center"
+                                        events="map.events" zoom="map.zoom">
+                        <ui-gmap-marker ng-repeat="marker in map.markers" coords="marker.coords" options="marker.options"
+                                        events="marker.events" idkey="marker.id">
+                        </ui-gmap-marker>
+                        <ui-gmap-search-box template="searchbox.template" events="searchbox.events" position="BOTTOM_RIGHT">
+                        </ui-gmap-search-box>
+                    </ui-gmap-google-map>
+                </div>
                 <md-content layout-padding>
                     <form name="userForm">
                         <md-input-container flex>
@@ -23,8 +23,11 @@
                             <label>Message</label>
                             <textarea ng-model="comment.message" columns="1" md-maxlength="150"></textarea>
                         </md-input-container>
-
-                        <md-button ng-click="save()" class="md-raised md-primary">Publish</md-button>
+                        <div class="right">
+                            <md-button aria-label="add location" class="md-primary"><span class="glyphicon glyphicon-plus-sign"></span>location</md-button>
+                            <md-button aria-label="add photos" class="md-primary"><span class="glyphicon glyphicon-plus-sign"></span>Photos</md-button>
+                        </div>
+                        <md-button ng-click="save()" aria-label="send" class="md-raised md-primary right"><span class="glyphicon glyphicon-send"></span></md-button>
                     </form>
                 </md-content>
             </form>

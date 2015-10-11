@@ -14,13 +14,13 @@ dianPing.controller 'comments', [
     $scope.likes = $meteor.collection Likes
 
     if $scope.likes.length == 0 && Meteor.userId
-      console.log 'before', $scope.likes
+#      console.log 'before', $scope.likes
       Meteor.call 'createLike'
-      console.log 'after', $scope.likes
+#      console.log 'after', $scope.likes
     else if $scope.likes.length > 1
-      console.error 'duplicated records in Likes'
+      console.warn 'duplicated records in Likes'
     else
-      console.error 'Meteor.userId is null'
+      console.warn 'Meteor.userId is null'
 
     $scope.getPhoto = (comment) ->
       getFacebookPhotoUrlById comment.owner
@@ -51,13 +51,14 @@ dianPing.controller 'comments', [
 #        console.log id
 #        console.log 'calling like with ', $scope.isLiked comment
         if (!$scope.isLiked comment)
-          console.log $scope.likes[0]
+#          console.log $scope.likes[0]
           $scope.likes[0].likes.push id
 #        console.log $scope.likes[0]
     $scope.dislike = (comment) ->
       if ($scope.likes[0] and $scope.isLiked(comment))
-        $scope.likes[0].splice $scope.likes[0].likes.indexOf comment._id, 1
-      console.log $scope.likes[0]
+        $scope.likes[0].likes.splice $scope.likes[0].likes.indexOf comment._id, 1
+        $scope.likes[0].likes.splice $scope.likes[0].likes.indexOf 'null', 1
+#      console.log $scope.likes[0]
 
 
 

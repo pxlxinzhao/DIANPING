@@ -5,29 +5,32 @@ html, body {
   background-color: @theme-background;
   transition: 1s;
 }
-.right {
-  float: right;
-}
-.left {
-  float: left;
-}
-.dark{
-  color: #fff;
-}
 
+//darkTheme customization
+md-input-container.md-docs-dark-theme label,
+md-input-container.md-docs-dark-theme .md-placeholder {
+  color: #dddddd;
+  text-shadow: 0 0 0 0;
+}
 
 //navbar
 @media (min-width: 768px){
   .navbar {
     border-radius: 0px;
   }
+  .navbar-default .navbar-toggle {
+    border-color: @theme-green;
+    color: @theme-green;
+  }
 }
 
 //user panel
 
 .self-panel{
+  padding: 10px;
   display: flex;
   color: #eee;
+  .box-shadow-default;
 
   .flex-direction(column);
   .align-content(center);
@@ -46,25 +49,34 @@ html, body {
     .align-self(center)
   }
 }
-.img-normal {
-  width: 50px;
-  height: 50px;
-}
-.img-large {
-  width: 80px;
-  height: 80px;
-}
-
 
 
 //composer
-.angular-google-map-container {
-  height: 200px;
-  width: 100%;
-  .pac-controls {
-    width: 150px;
+.compose-wrapper {
+  & * {
+    background-color: transparent;
+    .dark
+  }
+  form {
+    background-color: darken(@theme-background, 5%);
+    .border-radius(5px);
+    .box-shadow-default;
+  }
+  .angular-google-map-container {
+    height: 200px;
+    width: 100%;
+    .pac-controls {
+      width: 150px;
+    }
+  }
+  //google map input
+  input#pac-input {
+    margin-top: 5px;
+    background-color: #fff;
+    color: black;
   }
 }
+
 
 //profile
 .profile-nav {
