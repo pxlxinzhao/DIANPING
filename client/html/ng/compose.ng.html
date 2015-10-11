@@ -2,32 +2,16 @@
     <div class="panel-body">
         <div class="compose-wrapper" ng-controller="composer">
             <form role="form">
-                <div class="angular-google-map-container">
-                    <ui-gmap-google-map center="map.center"
-                                        events="map.events" zoom="map.zoom">
-                        <ui-gmap-marker ng-repeat="marker in map.markers" coords="marker.coords" options="marker.options"
-                                        events="marker.events" idkey="marker.id">
-                        </ui-gmap-marker>
-                        <ui-gmap-search-box template="searchbox.template" events="searchbox.events" position="BOTTOM_RIGHT">
-                        </ui-gmap-search-box>
-                    </ui-gmap-google-map>
-                </div>
-                <!--<div class="form-group">-->
-                    <!--<label for="compose-title">Title:</label>-->
-                    <!--<input type="text" ng-model="comment.title" class="form-control" id="compose-title">-->
+                <!--<div class="angular-google-map-container">-->
+                    <!--<ui-gmap-google-map center="map.center"-->
+                                        <!--events="map.events" zoom="map.zoom">-->
+                        <!--<ui-gmap-marker ng-repeat="marker in map.markers" coords="marker.coords" options="marker.options"-->
+                                        <!--events="marker.events" idkey="marker.id">-->
+                        <!--</ui-gmap-marker>-->
+                        <!--<ui-gmap-search-box template="searchbox.template" events="searchbox.events" position="BOTTOM_RIGHT">-->
+                        <!--</ui-gmap-search-box>-->
+                    <!--</ui-gmap-google-map>-->
                 <!--</div>-->
-                <!--&lt;!&ndash;<div class="form-group">&ndash;&gt;-->
-                    <!--&lt;!&ndash;<label for="compose-message">Message:</label>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<input type="text" ng-model="message" class="form-control" id="compose-message">&ndash;&gt;-->
-                <!--&lt;!&ndash;</div>&ndash;&gt;-->
-                <!--<div class="form-group">-->
-                    <!--<label for="compose-message">Message:</label>-->
-                    <!--<textarea  ng-model="comment.message" class="form-control" rows="5" id="compose-message"></textarea>-->
-                <!--</div>-->
-                <!--&lt;!&ndash;<div class="checkbox">&ndash;&gt;-->
-                    <!--&lt;!&ndash;<label><input type="checkbox"> Remember me</label>&ndash;&gt;-->
-                <!--&lt;!&ndash;</div>&ndash;&gt;-->
-                <!--<button ng-click="save()" class="btn btn-default">Submit</button>-->
                 <md-content layout-padding>
                     <form name="userForm">
                         <md-input-container flex>
@@ -47,3 +31,21 @@
         </div>
     </div>
 </div>
+
+
+<!--<div class="form-group">-->
+<!--<label for="compose-title">Title:</label>-->
+<!--<input type="text" ng-model="comment.title" class="form-control" id="compose-title">-->
+<!--</div>-->
+<!--&lt;!&ndash;<div class="form-group">&ndash;&gt;-->
+<!--&lt;!&ndash;<label for="compose-message">Message:</label>&ndash;&gt;-->
+<!--&lt;!&ndash;<input type="text" ng-model="message" class="form-control" id="compose-message">&ndash;&gt;-->
+<!--&lt;!&ndash;</div>&ndash;&gt;-->
+<!--<div class="form-group">-->
+<!--<label for="compose-message">Message:</label>-->
+<!--<textarea  ng-model="comment.message" class="form-control" rows="5" id="compose-message"></textarea>-->
+<!--</div>-->
+<!--&lt;!&ndash;<div class="checkbox">&ndash;&gt;-->
+<!--&lt;!&ndash;<label><input type="checkbox"> Remember me</label>&ndash;&gt;-->
+<!--&lt;!&ndash;</div>&ndash;&gt;-->
+<!--<button ng-click="save()" class="btn btn-default">Submit</button>-->

@@ -14,10 +14,9 @@ dianPing.controller 'comments', [
     $scope.likes = $meteor.collection Likes
 
     if $scope.likes.length == 0 && Meteor.userId
-      $scope.likes.push {
-        userId: Meteor.userId()
-        likes: []
-      }
+      console.log 'before', $scope.likes
+      Meteor.call 'createLike'
+      console.log 'after', $scope.likes
     else if $scope.likes.length > 1
       console.error 'duplicated records in Likes'
     else
@@ -42,13 +41,26 @@ dianPing.controller 'comments', [
               longitude: position.longitude
           if comment.position and userPos
             Math.round(calculateDistance(comment.position, userPos)*10)/10  + 'Km'
-    $scope.like = (comment) ->
-      if ($scope.likes[0] and $scope.likes[0].indexOf comment._id > -1)
-        $scope.likes[0].push comment._id
 
+    $scope.isLiked = (comment) ->
+#      console.log  $scope.likes[0] && $scope.likes[0].likes.indexOf(comment._id)
+      $scope.likes[0] && $scope.likes[0].likes.indexOf(comment._id) > -1
+    $scope.like = (comment) ->
+      if comment
+        id = comment._id
+#        console.log id
+#        console.log 'calling like with ', $scope.isLiked comment
+        if (!$scope.isLiked comment)
+          console.log $scope.likes[0]
+          $scope.likes[0].likes.push id
+#        console.log $scope.likes[0]
     $scope.dislike = (comment) ->
-      if ($scope.likes[0] and $scope.likes[0].indexOf comment._id == -1)
-        $scope.likes[0].splice $scope.likes[0].indexOf comment._id, 1
+      if ($scope.likes[0] and $scope.isLiked(comment))
+        $scope.likes[0].splice $scope.likes[0].likes.indexOf comment._id, 1
+      console.log $scope.likes[0]
+
+
+
 ]
 .filter 'commentFilter', [ ->
   (items) ->

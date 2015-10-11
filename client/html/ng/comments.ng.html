@@ -35,6 +35,9 @@
                             </h3>
                             <md-button class="md-raised md-warn comment-remove" aria-label="remove" ng-click="remove(comment)">
                                 <!--ng-click="remove(comment)"-->
+                                <ng-if>
+
+                                </ng-if>
                                 <span class="glyphicon glyphicon-minus"></span>
                             </md-button>
                             <!--<button class="comment-remove" ng-click="remove(comment)">Remove</button>-->
@@ -43,7 +46,8 @@
                             <p>{{comment.message}}</p>
                         </div>
                         <div class="panel-footer">
-                            <span class="glyphicon glyphicon-heart-empty"></span>
+                            <span ng-hide="isLiked(comment)" ng-click="like(comment)" class="glyphicon glyphicon-heart-empty"></span>
+                            <span ng-show="isLiked(comment)" ng-click="dislike(comment)" class="glyphicon glyphicon-heart red"></span>
                             <!--<span class="glyphicon-2x glyphicon-thumbs-up"></span>-->
                             <!--<div ng-include="'panelFooter.tpl.html'"></div>-->
                         </div>

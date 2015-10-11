@@ -5,4 +5,4 @@ Meteor.publish 'allComments', ->
   DianPings.find({}, {sort: {createdTime: -1}})
 
 Meteor.publish 'allLikes', ->
-  Likes.find({userId: this.userId()})
+  Likes.find({userId: this.userId})

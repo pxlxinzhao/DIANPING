@@ -5,3 +5,7 @@ Meteor.methods
   'updateCurrentUserAddress': (address) ->
     if address
       Meteor.users.update { _id: Meteor.userId() }, { $set: address: address}
+  'createLike': ->
+    count = Likes.find({_id: Meteor.userId()}).count()
+    if count == 0
+      Likes.insert({userId: Meteor.userId(), likes: []})

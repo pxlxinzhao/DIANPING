@@ -14,7 +14,7 @@ dianPing.controller 'userPanel', [
         if initial or (!Meteor.user().position || !Meteor.user().address)
           initial = false
           navigator.geolocation.getCurrentPosition (position) ->
-            if position
+            if position && google
               pos = _.clone position.coords
               Meteor.call 'updateCurrentUserPosition', pos
               geocoder = new (google.maps.Geocoder)
