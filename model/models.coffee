@@ -7,3 +7,9 @@ DianPings.allow
     userId and comment.owner == userId
   remove: (userId, comment) ->
     userId and comment.owner == userId
+
+@Photos = new Mongo.Collection 'photos'
+@Likes = new Mongo.Collection 'likes'
+@Follows = new Mongo.Collection 'follows'
+@Followers = new Mongo.Collection 'followers'
+@Profiles = new Mongo.Collection 'Profiles'

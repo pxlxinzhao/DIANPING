@@ -45,8 +45,11 @@
         background-color: @theme-background;
         .dist {
           &:hover{
-            .transform(translate(5px, 5px) scale(1.1, 1.1));
+            font-size: 1.4rem;
+            padding-left: 10px;
+            .transition(0.3s ease);
           }
+
           color: @brand-warning;
           text-decoration: underline;
         }

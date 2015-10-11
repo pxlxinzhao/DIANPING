@@ -5,14 +5,23 @@ dianPing.controller 'comments', [
   '$scope'
   '$meteor'
   ($scope, $meteor) ->
-    Tracker.autorun ->
-      console.log 'run'
-      $meteor.subscribe 'allComments', {
-        sort: {
-          createdTime: 1
-        }
+    $meteor.subscribe 'allComments', {
+      sort: {
+        createdTime: 1
       }
-      $scope.comments = $meteor.collection DianPings
+    }
+    $scope.comments = $meteor.collection DianPings
+    $scope.likes = $meteor.collection Likes
+
+    if $scope.likes.length == 0 && Meteor.userId
+      $scope.likes.push {
+        userId: Meteor.userId()
+        likes: []
+      }
+    else if $scope.likes.length > 1
+      console.error 'duplicated records in Likes'
+    else
+      console.error 'Meteor.userId is null'
 
     $scope.getPhoto = (comment) ->
       getFacebookPhotoUrlById comment.owner
@@ -33,7 +42,13 @@ dianPing.controller 'comments', [
               longitude: position.longitude
           if comment.position and userPos
             Math.round(calculateDistance(comment.position, userPos)*10)/10  + 'Km'
+    $scope.like = (comment) ->
+      if ($scope.likes[0] and $scope.likes[0].indexOf comment._id > -1)
+        $scope.likes[0].push comment._id
 
+    $scope.dislike = (comment) ->
+      if ($scope.likes[0] and $scope.likes[0].indexOf comment._id == -1)
+        $scope.likes[0].splice $scope.likes[0].indexOf comment._id, 1
 ]
 .filter 'commentFilter', [ ->
   (items) ->
