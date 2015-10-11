@@ -1,13 +1,19 @@
+
+
+
 dianPing.controller 'comments', [
   '$scope'
   '$meteor'
   ($scope, $meteor) ->
-    $meteor.subscribe 'allComments', {
-      sort: {
-        createdTime: 1
+    Tracker.autorun ->
+      console.log 'run'
+      $meteor.subscribe 'allComments', {
+        sort: {
+          createdTime: 1
+        }
       }
-    }
-    $scope.comments = $meteor.collection DianPings
+      $scope.comments = $meteor.collection DianPings
+
     $scope.getPhoto = (comment) ->
       getFacebookPhotoUrlById comment.owner
     $scope.remove = (comment) ->
@@ -29,13 +35,18 @@ dianPing.controller 'comments', [
             Math.round(calculateDistance(comment.position, userPos)*10)/10  + 'Km'
 
 ]
+.filter 'commentFilter', [ ->
+  (items) ->
+    filtered = _.sortBy items, 'createdTime'
+    filtered.reverse()
+]
 
 ##comment
 calculateDistance = (coord1, coord2, unit) ->
   if coord1 and coord2
     if !unit
       unit = 'K'
-    console.log coord1, coord2
+#    console.log coord1, coord2
     lat1 = coord1.latitude
     lat2 = coord2.latitude
     lon1 = coord1.longitude

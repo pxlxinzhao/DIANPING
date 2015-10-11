@@ -20,7 +20,7 @@
                         </div>
                     </div>
                 </li>
-                <li ng-repeat="comment in comments">
+                <li ng-repeat="comment in comments | commentFilter">
                     <div class="img-container">
                         <img class="img-circle img-normal" ng-src="{{getPhoto(comment)}}" alt="avatar">
                         <p>{{getOwner(comment.owner)}}</p>
@@ -30,17 +30,22 @@
                         <div class="panel-heading">
                             <h3 class="panel-title">
                                 {{comment.title}}
+                                <small>{{getTime(comment)}}</small>
+                                <small class="dist">{{getDist(comment)}}</small>
                             </h3>
-                            <md-button class="md-raised md-warn comment-remove" ng-click="remove(comment)">Remove</md-button>
+                            <md-button class="md-raised md-warn comment-remove" aria-label="remove" ng-click="remove(comment)">
+                                <!--ng-click="remove(comment)"-->
+                                <span class="glyphicon glyphicon-minus"></span>
+                            </md-button>
                             <!--<button class="comment-remove" ng-click="remove(comment)">Remove</button>-->
                         </div>
                         <div class="panel-body">
                             <p>{{comment.message}}</p>
                         </div>
                         <div class="panel-footer">
+                            <span class="glyphicon glyphicon-heart-empty"></span>
+                            <!--<span class="glyphicon-2x glyphicon-thumbs-up"></span>-->
                             <!--<div ng-include="'panelFooter.tpl.html'"></div>-->
-                            <small>{{getTime(comment)}}</small>
-                            <small class="dist">{{getDist(comment)}}</small>
                         </div>
                     </div>
                 </li>

@@ -1,11 +1,11 @@
 <div class="container">
     <div class="row dark">
 
-        <div class="col-md-3 col-lg-2" ng-controller="profileNavCtrl">
-            <md-list ng-controller="profileNavCtrl" ng-cloak>
+        <div class="col-md-3 col-lg-2">
+            <md-list ng-controller="profileNavCtrl" class="profile-nav" ng-cloak>
                 <md-list-item ng-repeat="navItem in nav" class="profile-nav">
-                    <md-checkbox class="hidden"></md-checkbox>
-                    <p>{{navItem}} </p>
+                    <md-checkbox aria-label="label" class="hidden"></md-checkbox>
+                    <a ng-href="{{navItem.url}}">{{navItem.name}} </a>
                 </md-list-item>
             </md-list>
         </div>

@@ -7,6 +7,7 @@ dianPing.controller 'userPanel', [
     Tracker.autorun ->
       if Meteor.user()
 #        $scope.users = $meteor.collection Meteor.users
+#        console.log Meteor.user()
         $scope.photoUrl = getFacebookPhotoUrlByUser Meteor.user()
         $scope.username = getCurrentUsername()
         $scope.address = Meteor.user().address

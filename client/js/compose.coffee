@@ -40,12 +40,12 @@ dianPing.controller 'composer', [
         $scope.comment.createdTime = moment().valueOf()
         if $scope.map.markers[0] && $scope.map.markers[0].coords
           $scope.comment.position = $scope.map.markers[0].coords
-        $scope.comments.push $scope.comment
+        $scope.comments.unshift $scope.comment
+
+        console.log $scope.comments
+
         $scope.comment = {}
         $scope.comment.owner = Meteor.userId()
-#        $scope.comments.save()
-#        $scope.comment.title=""
-#        $scope.comment.message=""
 
     events = places_changed: (searchBox) ->
       place = searchBox.getPlaces()

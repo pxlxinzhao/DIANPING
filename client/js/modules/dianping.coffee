@@ -18,6 +18,9 @@
       .state 'userView',
         url: '/user/:userId'
         templateUrl: 'client/html/ng/userView.ng.html'
+      .state 'profile-photo',
+        url: '/photo'
+        templateUrl: 'client/html/ng/profile-photo.ng.html'
       $urlRouterProvider.otherwise '/'
   ]
   .config ['uiGmapGoogleMapApiProvider',  (GoogleMapApi) ->
@@ -44,8 +47,23 @@ dianPing.controller 'rootCtrl', [
 ]
 
 #register services
-#dianPing.factory 'dpService', ->
-#  getFacebookPhotoUrl: getFacebookPhotoUrlByUser
+dianPing.factory 'navService', ->
+  nav = [];
+
+  nav.push
+    name: 'Edit Profile'
+    url: '/profile'
+  nav.push
+    name: 'Photos'
+    url: '/photo'
+  nav.push
+    name: 'Favorites'
+  nav.push
+    name: 'Messages'
+  nav.push
+    name: 'Preview'
+
+  nav
 
 ##define functions
 @getUserById = (userId) ->
@@ -65,10 +83,14 @@ dianPing.controller 'rootCtrl', [
     #    console.log 'user: ', user
     getFacebookPhotoUrlByUser user
 
-@getFacebookPhotoUrlByUser = (user) ->
+@getFacebookPhotoUrlByUser = (user, type) ->
 #  user = Meteor.user()
 #  console.log user
-  if user and user.services and user.services.facebook
-    'http://graph.facebook.com/' + user.services.facebook.id + '/picture'
+  if user and user.services and user.services.facebook.id
+#    console.log  user.services.facebook.id
+    if type
+      'http://graph.facebook.com/' + user.services.facebook.id + '/picture?type=' + type
+    else
+      'http://graph.facebook.com/' + user.services.facebook.id + '/picture'
   else
     'img/default.png'

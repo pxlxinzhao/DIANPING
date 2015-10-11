@@ -1,0 +1,32 @@
+<div class="container">
+    <div class="row dark" ng-controller="photoCtrl" >
+
+        <div class="col-md-3 col-lg-2">
+            <md-list ng-cloak>
+                <md-list-item ng-repeat="navItem in nav" class="profile-nav">
+                    <md-checkbox aria-label="label" class="hidden"></md-checkbox>
+                    <a ng-href="{{navItem.url}}">{{navItem.name}} </a>
+                </md-list-item>
+            </md-list>
+        </div>
+
+        <div class="col-md-9 col-lg-10">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Profile photo
+                </div>
+                <div class="panel-body">
+                    <div>
+                        <img class="img-huge" ng-src="{{photoUrl}}" alt="avatar">
+                    </div>
+                    <div>
+                        <md-button class="md-raised md-warn">Upload</md-button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+</div>

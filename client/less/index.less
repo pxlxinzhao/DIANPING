@@ -7,9 +7,13 @@ html, body {
 .right {
   float: right;
 }
+.left {
+  float: left;
+}
 .dark{
   color: #fff;
 }
+
 
 //navbar
 @media (min-width: 768px){
@@ -50,61 +54,7 @@ html, body {
   height: 80px;
 }
 
-//comments
-.comments-wrapper {
-  .md-list-item-text {
-    color: #eee;
-  }
-  ul {
-    list-style-type: none;
-    margin: 0px;
-    padding: 0px;
-    li {
-      .img-container {
-        display: flex;
-        float: left;
-        .flex-direction(column);
-        img {
-          .align-self(center)
-        }
-        p {
-          width: auto;
-          margin: 5px auto;
-          color: @brand-primary;
-          font-size: 1rem;
-          .align-self(center)
-        }
-      }
-      .panel.panel-default {
-        color: #eee;
-        margin-left: 60px;
-        position: relative;
-      }
-      .comment-remove {
-        position: absolute;
-        right:5px;
-        top:5px;
-      }
-      .panel-heading {
-        color: @theme-green;
-        border-top: 0px;
-        background-color: @theme-background;
-      }
-      .panel-footer {
-        border-top: 0px;
-        background-color: @theme-background;
-        small {
-          color: darkgray;
-          line-height: 20px;
-        }
-        .dist {
-          color: @theme-yellow;
-          float: right;
-        }
-      }
-    }
-  }
-}
+
 
 //composer
 .angular-google-map-container {
@@ -117,5 +67,15 @@ html, body {
 
 //profile
 .profile-nav {
-  color: @theme-red;
+  a {
+    color: @theme-red;
+  }
+}
+
+//photo
+
+.panel {
+  .panel-heading {
+    background-color: darken(@theme-background, 5%);
+  }
 }
