@@ -60,8 +60,31 @@
         background-color: @theme-background;
         color: #eee;
         font-size: 25px;
-        span:hover {
-          color: @theme-red;
+        div.reply-icon {
+          span:hover {
+            color: @theme-red;
+            &.glyphicon-share-alt:hover {
+              color: @theme-green;
+            }
+          }
+          display: inline-block;
+          margin-right: 10px;
+        }
+        div.reply-area {
+          display: flex;
+
+          .transition(0.5s cubic-bezier(0.51, 0.09, 0.53, 0.97) all);
+          &.ng-hide {
+            opacity: 0;
+          }
+          label, input {
+            font-size: 1.6rem;
+          }
+          .md-button {
+            .align-self(flex-end);
+            color: white;
+            margin-bottom: 26px;
+          }
         }
         .liked {
           &:hover {
@@ -69,11 +92,6 @@
           }
           color: @theme-red;
         }
-        //small {
-        //  color: darkgray;
-        //  line-height: 20px;
-        //}
-
       }
     }
   }

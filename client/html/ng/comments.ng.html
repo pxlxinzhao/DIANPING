@@ -46,8 +46,23 @@
                             <p>{{comment.message}}</p>
                         </div>
                         <div class="panel-footer">
-                            <span ng-hide="isLiked(comment)" ng-click="like(comment)" class="glyphicon glyphicon-heart-empty"></span>
-                            <span ng-show="isLiked(comment)" ng-click="dislike(comment)" class="glyphicon glyphicon-heart liked"></span>
+                            <div class="reply-icon">
+                                <span ng-hide="isLiked(comment)" ng-click="like(comment)" class="glyphicon glyphicon-heart-empty"></span>
+                                <span ng-show="isLiked(comment)" ng-click="dislike(comment)" class="glyphicon glyphicon-heart liked"></span>
+                            </div>
+                            <div class="reply-icon" ng-click="toggleReplying(comment)">
+                                <span class="glyphicon glyphicon-share-alt"></span>
+                            </div>
+                            <div ng-show="comment.isReplying" class="reply-area">
+                                <md-input-container flex>
+                                    <label>Message</label>
+                                    <input ng-model="replyMessage">
+                                </md-input-container>
+                                <md-button ng-click="reply()" aria-label="reply"
+                                           class="md-raised md-primary">
+                                    <span class="glyphicon glyphicon-send"></span>
+                                </md-button>
+                            </div>
                             <!--<span class="glyphicon-2x glyphicon-thumbs-up"></span>-->
                             <!--<div ng-include="'panelFooter.tpl.html'"></div>-->
                         </div>

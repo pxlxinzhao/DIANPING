@@ -25,6 +25,7 @@ dianPing.controller 'composer', [
       events:
         click: (map, eventName, originalEventArgs) ->
 #          console.log map == $scope.gMap
+          google.maps.event.trigger(map, 'resize')
           e = originalEventArgs[0]
           lat = e.latLng.lat()
           lon = e.latLng.lng()
@@ -85,8 +86,10 @@ dianPing.controller 'composer', [
         $scope.showMap = true
         console.log $scope.gMap
         if $scope.gMap
-          #this is important
-          google.maps.event.trigger($scope.gMap, 'resize')
+          #have two resize events to fit animation
+          setTimeout (-> google.maps.event.trigger($scope.gMap, 'resize')), 10
+          setTimeout (-> google.maps.event.trigger($scope.gMap, 'resize')), 600
+
 
 
 

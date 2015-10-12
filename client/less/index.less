@@ -63,6 +63,12 @@ md-input-container.md-docs-dark-theme .md-placeholder {
     .box-shadow-default;
   }
   .angular-google-map-container {
+    &.ng-hide {
+      opacity: 0;
+      height: 0px;
+    }
+    .transition(0.5s linear all);
+    overflow: hidden;
     height: 200px;
     width: 100%;
     .pac-controls {

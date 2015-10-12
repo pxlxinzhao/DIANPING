@@ -11,7 +11,8 @@ dianPing.controller 'comments', [
         createdTime: 1
       }
     }
-    $scope.comments = $meteor.collection DianPings
+#    $scope.isReplying = false
+    $scope.comments = $meteor.collection DianPings, false
     $scope.likes = $meteor.collection Likes
 
     if $scope.likes.length == 0 && Meteor.userId
@@ -71,6 +72,12 @@ dianPing.controller 'comments', [
       $mdDialog.show(confirm).then (->
         $scope.remove(comment)
       )
+
+    $scope.toggleReplying = (comment) ->
+      if comment.isReplying
+        comment.isReplying = false
+      else
+        comment.isReplying = true
 ]
 .filter 'commentFilter', [ ->
   (items) ->
