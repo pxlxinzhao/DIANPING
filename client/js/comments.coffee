@@ -81,40 +81,24 @@ dianPing.controller 'comments', [
       else
         comment.isReplying = true
     $scope.getReplies = (comment) ->
-      replyIndex = -1
-      replies = _.each $scope.replies, (r, index) ->
-#          console.log index, r, comment._id
-        if r.commentId == comment._id
-          replyIndex = index
-      if replyIndex > -1
-        $scope.replies[replyIndex].replies
+      console.log $scope.replies
+      results = _.filter $scope.replies, (reply) ->
+        if reply.commentId == comment._id
+          true
+        else
+          false
+      results
+
     $scope.reply = (comment) ->
       if comment.replyMessage
-        replyIndex = -1
-        replies = _.each $scope.replies, (r, index) ->
-#          console.log index, r, comment._id
-          if r.commentId == comment._id
-            replyIndex = index
-#        console.log replyIndex
-        if replyIndex == -1
           $scope.replies.push
             owner: Meteor.userId()
             commentId: comment._id
-            replies: [
-              replyer: Meteor.userId()
-              message: comment.replyMessage
-              createdDate: moment().valueOf()
-            ]
-          console.log 'created comment reply object'
-          comment.replyMessage = ''
-        else
-          $scope.replies[replyIndex].replies.push
             replyer: Meteor.userId()
             message: comment.replyMessage
             createdDate: moment().valueOf()
-          console.log 'updated comment reply object'
+          console.log 'created comment reply object'
           comment.replyMessage = ''
-
 
 ]
 .filter 'commentFilter', [ ->
