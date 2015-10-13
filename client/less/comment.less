@@ -74,6 +74,8 @@
           display: flex;
           .flex-wrap(wrap);
           .transition(0.5s cubic-bezier(0.51, 0.09, 0.53, 0.97) all);
+          .align-items(flex-start);
+
           &.ng-hide {
             opacity: 0;
           }
@@ -96,8 +98,31 @@
           .reply-display {
             padding: 10px 0px;
             margin-top: 10px;
-            .flex(1 0 100%);
+            display: flex;
+            max-width: 100%;
+            .align-items(center);
+            .justify-content(space-between);
+            //.flex( 100%);
+
+            .reply-left {
+              display: flex;
+              .flex(0 1 auto);
+            }
+            .reply-right.like-icon {
+              .flex(0 1 auto);
+              align-self: flex-start;
+              margin-bot: 10px;
+              span:hover {
+                color: @brand-primary;
+              }
+            }
+            p.reply-message {
+              margin-left: 0px
+              padding: 0px 20px 0px 20px;
+              .flex(0 1 content);
+            }
             .img-container{
+              .flex(1 0 auto);
               img {
                 .img-small;
               }

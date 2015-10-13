@@ -62,11 +62,16 @@
                                 <ul>
                                     <li ng-repeat="reply in getReplies(comment)">
                                         <div class="reply-display">
-                                            <div class="img-container">
-                                                <img class="img-circle img-normal" ng-src="{{getPhoto(reply.replyer)}}" alt="avatar">
-                                                <p>{{getOwner(reply.replyer)}}</p>
+                                            <div class="reply-left">
+                                                <div class="img-container">
+                                                    <img class="img-circle img-normal" ng-src="{{getPhoto(reply.replyer)}}" alt="avatar">
+                                                    <p>{{getOwner(reply.replyer)}}</p>
+                                                </div>
+                                                <p class="reply-message">{{reply.message}}</p>
                                             </div>
-                                            <p class="reply-message">{{reply.message}}</p>
+                                            <div class="reply-right like-icon">
+                                                <span class="glyphicon glyphicon-thumbs-up"></span>
+                                            </div>
                                         </div>
                                     </li>
                                 </ul>
