@@ -12,4 +12,5 @@ DianPings.allow
 @Likes = new Mongo.Collection 'likes'
 @Follows = new Mongo.Collection 'follows'
 @Followers = new Mongo.Collection 'followers'
-@Profiles = new Mongo.Collection 'Profiles'
+@Profiles = new Mongo.Collection 'profiles'
+@Replies = new Mongo.Collection 'replies'

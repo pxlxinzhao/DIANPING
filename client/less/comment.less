@@ -72,7 +72,7 @@
         }
         div.reply-area {
           display: flex;
-
+          .flex-wrap(wrap);
           .transition(0.5s cubic-bezier(0.51, 0.09, 0.53, 0.97) all);
           &.ng-hide {
             opacity: 0;
@@ -84,6 +84,27 @@
             .align-self(flex-end);
             color: white;
             margin-bottom: 26px;
+          }
+          ul {
+            .flex(1 0 100%);
+            .reply-message {
+              font-size: 1.4rem;
+              color: #eee;
+              margin-left: 3rem;
+            }
+          }
+          .reply-display {
+            padding: 10px 0px;
+            margin-top: 10px;
+            .flex(1 0 100%);
+            .img-container{
+              img {
+                .img-small;
+              }
+              p{
+                font-size: 0.85rem;
+              }
+            }
           }
         }
         .liked {
