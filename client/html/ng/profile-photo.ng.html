@@ -15,13 +15,36 @@
                 <div class="panel-heading">
                     Profile photo
                 </div>
-                <div class="panel-body">
-                    <div>
-                        <img class="img-huge" ng-src="{{photoUrl}}" alt="avatar">
+                <div class="panel-body photo-wrapper" md-theme="docs-dark">
+                    <div class="photo-upload">
+                        <div>
+                            <img class="img-large" ng-src="{{photoUrl}}" alt="avatar">
+                        </div>
+                        <!--<div>-->
+                            <!--<input type="file" fileread="fileread"/>-->
+                            <!--<md-button class="md-raised md-primary" ng-click="upload()">Upload</md-button>-->
+                        <!--</div>-->
                     </div>
-                    <div>
-                        <md-button class="md-raised md-warn">Upload</md-button>
-                    </div>
+                   <div class="photo-upload-area" ng-controller="DemoCtrl">
+                       <div>
+                           <label for="inputImage2">Image 2</label>
+
+                           <input id="inputImage2"
+                                  type="file"
+                                  accept="image/*"
+                                  image="image2"
+                                  resize-max-height="300"
+                                  resize-max-width="250"
+                                  resize-quality="0.7" />
+
+                           <!--<p>Original</p>-->
+                           <!--<img ng-show="image2" ng-src="{{image2.url}}" type="{{image2.file.type}}"/>-->
+                           <!--<p>Resized</p>-->
+                           <img ng-show="image2" ng-src="{{image2.resized.dataURL}}"/>
+                           <md-button class="md-raised md-primary" ng-click="upload(image2.resized)">Upload</md-button>
+                           <!--<button type="submit" ng-click="single(image2.resized)" disabled>Add</button>-->
+                       </div>
+                   </div>
                 </div>
             </div>
         </div>
