@@ -9,3 +9,7 @@ Meteor.methods
     count = Likes.find({_id: Meteor.userId()}).count()
     if count == 0
       Likes.insert({userId: Meteor.userId(), likes: []})
+  'countPhotos': ->
+    count = Photos.find().count()
+    console.log count
+    count

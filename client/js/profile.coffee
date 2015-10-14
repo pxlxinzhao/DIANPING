@@ -60,30 +60,49 @@ dianPing.controller('photoUploadCtrl', [
     '$scope'
     '$meteor'
     ($scope, $meteor) ->
-      $scope.photos = $meteor.collection(Photos).subscribe 'photos'
 
+###########     define a function
+      countPhotoAndSetToScope = ->
+        Meteor.call 'countPhotos', (err, result) ->
+          if err
+            console.log err
+          if result
+            $scope.photoCount = result;
+            $scope.$apply()
+      ##############
+
+      countPhotoAndSetToScope()
+      $scope.photos = $meteor.collection(Photos).subscribe 'photos'
+#      $meteor.autorun ->
+#        $scope.photoCount = Session.get 'photoCount'
+      $scope.maxPhotoCount = 15
 #      count does not work. totally have no idea..
 #      console.log $scope.photos, $scope.photos.length, Photos.find({}).count()
-
       $scope.upload = (image2) ->
-        file = dataURItoBlob(image2)
-        Cloudinary.upload [file], null, (err, res) ->
-          console.log 'error', err
-          console.log 'success', res
-          if res
-            $scope.photos.push
-              owner: Meteor.userId()
-              c: res
+        console.log 'calling upload'
+        Meteor.call 'countPhotos', (err, result) ->
+          if err
+            console.log err
+          if result and result <= $scope.maxPhotoCount
+            console.log 'count', result
+            file = dataURItoBlob(image2)
+            Cloudinary.upload [file], null, (err, res) ->
+              console.log 'error', err
+              console.log 'success', res
+              if res
+                console.log 'saving'
+                $scope.photos.push
+                  owner: Meteor.userId()
+                  c: res
+                console.log 'saved'
+                $scope.photoCount =  $scope.photoCount + 1
+                $scope.$apply()
   ]
 #  console.log $scope.nav
 )
 
 
-
-
-
 # functions
-
 dataURItoBlob = (file) ->
   dataURI = file.dataURL
 # convert base64 to raw binary data held in a string

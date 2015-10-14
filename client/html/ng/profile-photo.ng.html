@@ -45,9 +45,12 @@
                            <!--<button type="submit" ng-click="single(image2.resized)" disabled>Add</button>-->
                        </div>
 
+                       <div>
+                           {{photoCount}} / {{maxPhotoCount}}
+                       </div>
 
                        <div ng-repeat="photo in photos">
-                           {{photo.owner}}
+                           {{photo.c.public_id}}
                        </div>
                    </div>
                 </div>
