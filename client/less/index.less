@@ -98,3 +98,24 @@ md-input-container.md-docs-dark-theme .md-placeholder {
     background-color: darken(@theme-background, 5%);
   }
 }
+.photo-wrapper{
+  display: flex;
+  .flex-wrap(wrap);
+
+  .photo-upload {
+    width: 100%;
+    display: flex;
+    .align-items(center);
+    .justify-content(flex-start);
+
+    .md-button {
+      color: white;
+    }
+    input[type='file']{
+      margin-left: 8px;
+    }
+  }
+  .photo-display {
+
+  }
+}
