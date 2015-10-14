@@ -25,7 +25,7 @@
                             <!--<md-button class="md-raised md-primary" ng-click="upload()">Upload</md-button>-->
                         <!--</div>-->
                     </div>
-                   <div class="photo-upload-area" ng-controller="DemoCtrl">
+                   <div class="photo-upload-area" ng-controller="photoUploadCtrl">
                        <div>
                            <label for="inputImage2">Image 2</label>
 
@@ -43,6 +43,11 @@
                            <img ng-show="image2" ng-src="{{image2.resized.dataURL}}"/>
                            <md-button class="md-raised md-primary" ng-click="upload(image2.resized)">Upload</md-button>
                            <!--<button type="submit" ng-click="single(image2.resized)" disabled>Add</button>-->
+                       </div>
+
+
+                       <div ng-repeat="photo in photos">
+                           {{photo.owner}}
                        </div>
                    </div>
                 </div>

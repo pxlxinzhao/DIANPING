@@ -51,19 +51,33 @@ dianPing.controller('photoCtrl', [
 
       $scope.fileread = {};
       $scope.upload = ->
-        console.log $scope.fileread;
+        console.log $scope.fileread
   ]
 #  console.log $scope.nav
 )
 
-dianPing.controller 'DemoCtrl', ($scope, $http) ->
+dianPing.controller('photoUploadCtrl', [
+    '$scope'
+    '$meteor'
+    ($scope, $meteor) ->
+      $scope.photos = $meteor.collection(Photos).subscribe 'photos'
 
-  $scope.upload = (image2) ->
-    console.log image2
-    file = dataURItoBlob(image2)
-    Cloudinary.upload [file], null, (err, res) ->
-      console.log 'success', res
-      console.log 'error', err
+#      count does not work. totally have no idea..
+#      console.log $scope.photos, $scope.photos.length, Photos.find({}).count()
+
+      $scope.upload = (image2) ->
+        file = dataURItoBlob(image2)
+        Cloudinary.upload [file], null, (err, res) ->
+          console.log 'error', err
+          console.log 'success', res
+          if res
+            $scope.photos.push
+              owner: Meteor.userId()
+              c: res
+  ]
+#  console.log $scope.nav
+)
+
 
 
 

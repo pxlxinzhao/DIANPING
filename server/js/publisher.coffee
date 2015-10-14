@@ -9,3 +9,6 @@ Meteor.publish 'allLikes', ->
 
 Meteor.publish 'replies', ->
   Replies.find({owner: this.userId})
+
+Meteor.publish 'photos', ->
+  Photos.find({owner: this.userId})
