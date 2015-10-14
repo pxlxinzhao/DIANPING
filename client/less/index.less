@@ -102,20 +102,35 @@ md-input-container.md-docs-dark-theme .md-placeholder {
   display: flex;
   .flex-wrap(wrap);
 
-  .photo-upload {
-    width: 100%;
+  .left-panel {
     display: flex;
+    .flex(1 0 100%);
     .align-items(center);
+    .flex-direction(column);
     .justify-content(flex-start);
+    .current-photo {
 
-    .md-button {
-      color: white;
     }
-    input[type='file']{
-      margin-left: 8px;
+    .photo-upload-area {
+      display: flex;
+      .align-items(center);
+      .justify-content(center);
+      .md-button {
+        color: white;
+      }
+      input[type='file']{
+        margin-left: 8px;
+      }
     }
   }
-  .photo-display {
 
+  .right-panel {
+    display: flex;
+    label {
+      .flex(1 0 100%);
+    }
+    div {
+      .justify-content(space-around);
+    }
   }
 }

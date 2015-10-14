@@ -89,7 +89,7 @@ dianPing.factory 'navService', ->
   if user and user.services and user.services.facebook.id
 #    console.log  user.services.facebook.id
     if type
-      'http://graph.facebook.com/' + user.services.facebook.id + '/picture?type='
+      'http://graph.facebook.com/' + user.services.facebook.id + '/picture?type=' + type
     else
       'http://graph.facebook.com/' + user.services.facebook.id + '/picture'
   else
