@@ -126,11 +126,18 @@ md-input-container.md-docs-dark-theme .md-placeholder {
 
   .right-panel {
     display: flex;
+    .flex-wrap(wrap);
+    .justify-content(flex-start);
     label {
+      padding-left: 10px;
       .flex(1 0 100%);
+      span {
+        padding-left: 20px;
+        color: @theme-green;
+      }
     }
     div {
-      .justify-content(space-around);
+      padding: 10px;
     }
   }
 }

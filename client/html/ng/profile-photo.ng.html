@@ -36,9 +36,10 @@
                     <div class="right-panel">
                         <label>
                             {{photoCount}} / {{maxPhotoCount}}
+                            <span>Double click to choose a photo</span>
                         </label>
                         <div ng-repeat="photo in photos">
-                            <img data-id="{{photo.c.public_id}}" ng-src="{{photo.c.url}}" class="img img-huge"/>
+                            <img data-id="{{photo.c.public_id}}" ng-src="{{photo.c.url}}" class="img img-large"/>
                         </div>
                     </div>
                 </div>
