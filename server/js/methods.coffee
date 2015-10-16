@@ -11,5 +11,4 @@ Meteor.methods
       Likes.insert({userId: Meteor.userId(), likes: []})
   'countPhotos': ->
     count = Photos.find().count()
-    console.log count
     count

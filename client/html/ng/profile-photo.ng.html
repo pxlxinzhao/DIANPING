@@ -29,11 +29,12 @@
                                    resize-max-width="250"
                                    resize-quality="0.7" />
 
-                            <img ng-show="image2" ng-src="{{image2.resized.dataURL}}"/>
+                            <!--<img ng-show="image2" ng-src="{{image2.resized.dataURL}}"/>-->
                             <md-button class="md-raised md-primary dark" ng-click="upload(image2.resized)">Upload</md-button>
                         </div>
                     </div>
                     <div class="right-panel">
+                        <md-progress-linear md-mode="{{mode}}"></md-progress-linear>
                         <label>
                             {{photoCount}} / {{maxPhotoCount}}
                             <span>Double click to choose a photo</span>

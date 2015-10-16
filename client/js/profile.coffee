@@ -59,7 +59,9 @@ dianPing.controller('photoCtrl', [
 dianPing.controller('photoUploadCtrl', [
     '$scope'
     '$meteor'
-    ($scope, $meteor) ->
+    '$rootScope'
+    'toastService'
+    ($scope, $meteor, $rootScope, toastService) ->
 
 ###########     define a function
       countPhotoAndSetToScope = ->
@@ -72,6 +74,10 @@ dianPing.controller('photoUploadCtrl', [
       ##############
 
       countPhotoAndSetToScope()
+
+      console.log '$rootScope', $rootScope
+
+      $scope.mode = 'determinate'
       $scope.photos = $meteor.collection(Photos).subscribe 'photos'
 #      $meteor.autorun ->
 #        $scope.photoCount = Session.get 'photoCount'
@@ -79,24 +85,32 @@ dianPing.controller('photoUploadCtrl', [
 #      count does not work. totally have no idea..
 #      console.log $scope.photos, $scope.photos.length, Photos.find({}).count()
       $scope.upload = (image2) ->
-        console.log 'calling upload'
-        Meteor.call 'countPhotos', (err, result) ->
-          if err
-            console.log err
-          if result and result <= $scope.maxPhotoCount
-            console.log 'count', result
-            file = dataURItoBlob(image2)
-            Cloudinary.upload [file], null, (err, res) ->
-              console.log 'error', err
-              console.log 'success', res
-              if res
-                console.log 'saving'
-                $scope.photos.push
-                  owner: Meteor.userId()
-                  c: res
-                console.log 'saved'
-                $scope.photoCount =  $scope.photoCount + 1
-                $scope.$apply()
+        if (image2)
+          $scope.mode = 'query'
+          console.log 'calling upload'
+          Meteor.call 'countPhotos', (err, result) ->
+            if err
+              console.log err
+              $scope.mode = 'determinate'
+            if result and result <= $scope.maxPhotoCount
+              console.log 'count', result
+              file = dataURItoBlob(image2)
+              Cloudinary.upload [file], null, (err, res) ->
+                if err
+                  console.log 'error', err
+                if res
+                  console.log 'saving', res
+                  $scope.photos.push
+                    owner: Meteor.userId()
+                    c: res
+                  console.log 'saved'
+                  $scope.photoCount =  $scope.photoCount + 1
+                  $scope.$apply()
+                $scope.mode = 'determinate'
+            else
+              $scope.mode = 'determinate'
+        else
+          toastService()
   ]
 #  console.log $scope.nav
 )

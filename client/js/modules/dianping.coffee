@@ -42,8 +42,49 @@
 dianPing.controller 'rootCtrl', [
   '$scope'
   '$rootScope'
-  ($scope, $rootScope) ->
+  ($scope, $rootScope, $mdToast, $document) ->
       $rootScope.getCurrentUsername = getCurrentUsername
+
+]
+
+
+dianPing.factory 'toastService', [
+  '$rootScope'
+  '$mdToast'
+  ($rootScope, $mdToast) ->
+
+    last =
+      bottom: false
+      top: true
+      left: false
+      right: true
+
+    toastPosition = angular.extend({}, last)
+
+    sanitizePosition = ->
+      current = toastPosition
+      if current.bottom and last.top
+        current.top = false
+      if current.top and last.bottom
+        current.bottom = false
+      if current.right and last.left
+        current.left = false
+      if current.left and last.right
+        current.right = false
+      last = angular.extend({}, current)
+
+    getToastPosition = ->
+      sanitizePosition()
+      Object.keys(toastPosition).filter((pos) ->
+        toastPosition[pos]
+      ).join ' '
+
+    showSimpleToast = ->
+      toast =  $mdToast.simple().content('Simple Toast!').position(getToastPosition).hideDelay(2000);
+      console.log 'toasting', toast
+      $mdToast.show toast
+
+    showSimpleToast
 ]
 
 #register services
