@@ -2,11 +2,12 @@
 
 //comments
 .comments-wrapper {
-  .box-shadow-default;
+  padding: 15px 0px;
   .md-list-item-text {
     color: #eee;
   }
-  .panel-body {
+  .panel-body.comments-container {
+    .box-shadow-default;
     .default-transition;
   }
   ul {
@@ -53,10 +54,10 @@
         border-top: 0px;
         background-color: @theme-background;
         .dist {
+          .quick-transition;
           &:hover{
             font-size: 1.4rem;
-            padding-left: 10px;
-            .transition(0.3s ease);
+            .quick-transition;
           }
 
           color: @brand-warning;
