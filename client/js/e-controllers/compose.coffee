@@ -3,7 +3,8 @@ dianPing.controller 'composer', [
   '$scope'
   '$meteor'
   'uiGmapIsReady'
-  ($scope, $meteor, IsReady) ->
+  'toastService'
+  ($scope, $meteor, IsReady, toastService) ->
 
     IsReady.promise().then (maps) ->
       $scope.gMap = maps[0].map
@@ -43,6 +44,7 @@ dianPing.controller 'composer', [
           $scope.map.markers.push marker
           #          console.log $scope.map.markers
           $scope.$apply()
+
     $scope.save = ->
       if $scope.comment.title and $scope.comment.message
         $scope.comment.createdTime = moment().valueOf()
@@ -54,6 +56,9 @@ dianPing.controller 'composer', [
 
         $scope.comment = {}
         $scope.comment.owner = Meteor.userId()
+      else
+        console.log 'here'
+        toastService('Please fill title and message fields')
 
     events = places_changed: (searchBox) ->
       place = searchBox.getPlaces()
