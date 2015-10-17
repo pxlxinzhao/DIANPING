@@ -35,13 +35,18 @@
         position: relative;
       }
       .comment-remove {
-        .border-radius(50px);
-        min-height: 0;
-        min-width: 0;
-        width: 36px;
         position: absolute;
         right:5px;
-        top:5px;
+        top:12px;
+        span {
+          width: 16px;
+          height: 16px;
+          color: @theme-red;
+          &:hover {
+            .quick-transition;
+            .transform(scale(1.5));
+          }
+        }
       }
       .panel-heading {
         color: @theme-green;

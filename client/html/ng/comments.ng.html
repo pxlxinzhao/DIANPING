@@ -22,13 +22,9 @@
                                 <small>{{getTime(comment)}}</small>
                                 <small class="dist">{{getDist(comment)}}</small>
                             </h3>
-                            <md-button class="md-raised md-warn comment-remove" aria-label="remove" ng-click="showConfirm(comment)">
-                                <!--ng-click="remove(comment)"-->
-                                <ng-if>
-
-                                </ng-if>
-                                <span class="glyphicon glyphicon-minus"></span>
-                            </md-button>
+                            <div class="comment-remove">
+                                <span class="glyphicon glyphicon-minus-sign" ng-click="showConfirm(comment)"></span>
+                            </div>
                             <!--<button class="comment-remove" ng-click="remove(comment)">Remove</button>-->
                         </div>
                         <div class="panel-body">
