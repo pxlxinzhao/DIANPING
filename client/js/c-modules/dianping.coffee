@@ -95,8 +95,10 @@ dianPing.factory 'photoUrlService',  ->
 
 @getPhotoUrl = (userId, type) ->
   if userId
-    if userId == Meteor.userId() and  Meteor.user() and Meteor.user().photoUrl
-      Meteor.user().photoUrl
+    if userId == Meteor.userId() and  Meteor.user() and Meteor.user().photoId
+      photoId = Meteor.user().photoId
+      photo = Photos.findOne({_id: photoId})
+      photo.c.url
     else
       user = getUserById(userId)
       if user and user.services and user.services.facebook.id

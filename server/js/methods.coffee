@@ -11,6 +11,9 @@ Meteor.methods
       Likes.insert({userId: Meteor.userId(), likes: []})
   'countPhotos': ->
     count = Photos.find().count()
+    console.log 'count:', count
     count
-  'updatePhotoUrl': (photoUrl)->
-    Meteor.users.upsert {_id: Meteor.userId()}, {$set: photoUrl: photoUrl}
+  'updatePhotoId': (photo)->
+    Meteor.users.upsert {_id: Meteor.userId()}, {$set: photoId: photo._id}
+  'deletePhoto': (photo) ->
+    Photos.remove _id: photo._id

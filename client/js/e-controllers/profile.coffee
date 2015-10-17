@@ -1,17 +1,3 @@
-#angular.module('profileMod', [
-#  'ngMaterial'
-#  'ngMessages'
-#])
-dianPing.directive 'fileread', [ ->
-  {
-  scope: fileread: '='
-  link: (scope, element, attributes) ->
-    element.bind 'change', (changeEvent) ->
-      scope.$apply ->
-        scope.fileread = changeEvent.target.files[0]
-  }
-]
-
 
 dianPing.controller('profileNavCtrl', [
     '$scope'
@@ -38,6 +24,17 @@ dianPing.controller('profileCtrl', ($scope) ->
     postalCode: '94043'
 )
 
+
+dianPing.directive 'fileread', [ ->
+  {
+  scope: fileread: '='
+  link: (scope, element, attributes) ->
+    element.bind 'change', (changeEvent) ->
+      scope.$apply ->
+        scope.fileread = changeEvent.target.files[0]
+  }
+]
+
 dianPing.controller('photoCtrl', [
     '$scope'
     'navService'
@@ -63,8 +60,10 @@ dianPing.controller('photoUploadCtrl', [
     '$rootScope'
     'toastService'
     ($scope, $meteor, $rootScope, toastService) ->
-
+#### delete all photo in cloudinary!!! careful!!
 ###########     define a function
+      $scope.photoCount = 0
+
       countPhotoAndSetToScope = ->
         Meteor.call 'countPhotos', (err, result) ->
           if err
@@ -81,25 +80,40 @@ dianPing.controller('photoUploadCtrl', [
       $scope.mode = 'determinate'
       $scope.photos = $meteor.collection(Photos).subscribe 'photos'
 
+      $scope.delete = (photo) ->
+        console.log photo.c.public_id
+        Cloudinary.delete photo.c.public_id, (err,res) ->
+          if err
+            console.log "Cloudinary delete Error: #{err}"
+          else
+            console.log "Cloudinary delete Success: #{res}"
+          Meteor.call 'deletePhoto', photo, (err, res) ->
+            if (err)
+              console.log 'deletePhoto Error'
+            else
+              console.log 'deletePhoto Success'
+              $scope.photoCount--
+
       $scope.changePhoto = (photo) ->
-        Meteor.call 'updatePhotoUrl', photo.c.url, (err, data) ->
+        Meteor.call 'updatePhotoId', photo, (err, data) ->
           if err
             console.log err
           else
             toastService 'Photo updated'
 
       $scope.maxPhotoCount = 15
-#      count does not work. totally have no idea..
-#      console.log $scope.photos, $scope.photos.length, Photos.find({}).count()
+      #      count does not work. totally have no idea..
+      #      console.log $scope.photos, $scope.photos.length, Photos.find({}).count()
       $scope.upload = (image2) ->
         if (image2)
           $scope.mode = 'query'
           console.log 'calling upload'
           Meteor.call 'countPhotos', (err, result) ->
+            console.log 'in callback', err, result
             if err
               console.log err
               $scope.mode = 'determinate'
-            if result and result <= $scope.maxPhotoCount
+            if (result or result == 0) and result <= $scope.maxPhotoCount
               console.log 'count', result
               file = dataURItoBlob(image2)
               Cloudinary.upload [file], null, (err, res) ->
@@ -111,7 +125,7 @@ dianPing.controller('photoUploadCtrl', [
                     owner: Meteor.userId()
                     c: res
                   console.log 'saved'
-                  $scope.photoCount =  $scope.photoCount + 1
+                  $scope.photoCount++
                   $scope.$apply()
                 $scope.mode = 'determinate'
                 toastService('Successfully uploaded')
@@ -127,8 +141,8 @@ dianPing.controller('photoUploadCtrl', [
 # functions
 dataURItoBlob = (file) ->
   dataURI = file.dataURL
-# convert base64 to raw binary data held in a string
-# doesn't handle URLEncoded DataURIs - see SO answer #6850276 for code that does this
+  # convert base64 to raw binary data held in a string
+  # doesn't handle URLEncoded DataURIs - see SO answer #6850276 for code that does this
   byteString = atob(dataURI.split(',')[1])
   # separate out the mime component
   mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0]
@@ -142,3 +156,4 @@ dataURItoBlob = (file) ->
   # write the ArrayBuffer to a blob, and you're done
   bb = new Blob([ab],{type: file.type})
   bb
+

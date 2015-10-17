@@ -17,6 +17,7 @@ md-progress-linear {
   height: 1px;
   overflow: hidden;
   margin: 10px 0px;
+  .align-self(center);
 }
 
 //navbar
@@ -28,6 +29,10 @@ md-progress-linear {
     border-color: @theme-green;
     color: @theme-green;
   }
+}
+
+.navbar-header {
+  .box-shadow(1px 4px 10px 0px darken(@theme-background, 5%));
 }
 
 //user panel
@@ -131,6 +136,7 @@ md-progress-linear {
   }
 
   .right-panel {
+    width: 100%;
     display: flex;
     .flex-wrap(wrap);
     .justify-content(flex-start);
@@ -155,6 +161,10 @@ md-progress-linear {
         top: 12px;
         right: 10px;
         color: @theme-red;
+        &:hover {
+          .default-transition;
+          .transform(scale(1.5));
+        }
       }
     }
   }
