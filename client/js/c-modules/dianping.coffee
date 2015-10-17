@@ -78,20 +78,7 @@ dianPing.factory 'toastService', [
 ]
 
 dianPing.factory 'photoUrlService',  ->
-  getPhotoUrl = (userId, type) ->
-    console.log '123'
-    if userId
-      if userId == Meteor.userId() and  Meteor.user() and Meteor.user().photoUrl
-        Meteor.user().photoUrl
-      else
-        user = getUserById(userId)
-        if user and user.services and user.services.facebook.id
-          if type
-            'http://graph.facebook.com/' + user.services.facebook.id + '/picture?type=' + type
-          else
-            'http://graph.facebook.com/' + user.services.facebook.id + '/picture'
-        else
-          'img/default.png'
+  getPhotoUrl
 
 
 ##define functions
@@ -106,3 +93,16 @@ dianPing.factory 'photoUrlService',  ->
 @getCurrentUsername = ->
   if Meteor.user() and Meteor.user().profile then  Meteor.user().profile.name else 'UNKNOWN'
 
+@getPhotoUrl = (userId, type) ->
+  if userId
+    if userId == Meteor.userId() and  Meteor.user() and Meteor.user().photoUrl
+      Meteor.user().photoUrl
+    else
+      user = getUserById(userId)
+      if user and user.services and user.services.facebook.id
+        if type
+          'http://graph.facebook.com/' + user.services.facebook.id + '/picture?type=' + type
+        else
+          'http://graph.facebook.com/' + user.services.facebook.id + '/picture'
+      else
+        'img/default.png'

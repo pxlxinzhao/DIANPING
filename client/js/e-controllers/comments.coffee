@@ -5,7 +5,8 @@ dianPing.controller 'comments', [
   '$scope'
   '$meteor'
   '$mdDialog'
-  ($scope, $meteor, $mdDialog) ->
+  'photoUrlService'
+  ($scope, $meteor, $mdDialog, photoUrlService) ->
     $meteor.subscribe 'allComments', {
       sort: {
         createdTime: 1
@@ -27,7 +28,7 @@ dianPing.controller 'comments', [
       console.warn 'Meteor.userId is null'
 
     $scope.getPhoto = (id) ->
-      getFacebookPhotoUrlById id
+      photoUrlService id
     $scope.remove = (comment) ->
       $scope.comments.splice($scope.comments.indexOf(comment), 1)
     $scope.getOwner = (id) ->
@@ -81,7 +82,7 @@ dianPing.controller 'comments', [
       else
         comment.isReplying = true
     $scope.getReplies = (comment) ->
-      console.log $scope.replies
+#      console.log $scope.replies
       results = _.filter $scope.replies, (reply) ->
         if reply.commentId == comment._id
           true
