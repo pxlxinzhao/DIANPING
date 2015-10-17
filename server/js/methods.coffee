@@ -12,3 +12,5 @@ Meteor.methods
   'countPhotos': ->
     count = Photos.find().count()
     count
+  'updatePhotoUrl': (photoUrl)->
+    Meteor.users.upsert {_id: Meteor.userId()}, {$set: photoUrl: photoUrl}

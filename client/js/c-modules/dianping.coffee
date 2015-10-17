@@ -47,50 +47,9 @@ dianPing.controller 'rootCtrl', [
 
 ]
 
-
-dianPing.factory 'toastService', [
-  '$rootScope'
-  '$mdToast'
-  ($rootScope, $mdToast) ->
-
-    last =
-      bottom: false
-      top: true
-      left: false
-      right: true
-
-    toastPosition = angular.extend({}, last)
-
-    sanitizePosition = ->
-      current = toastPosition
-      if current.bottom and last.top
-        current.top = false
-      if current.top and last.bottom
-        current.bottom = false
-      if current.right and last.left
-        current.left = false
-      if current.left and last.right
-        current.right = false
-      last = angular.extend({}, current)
-
-    getToastPosition = ->
-      sanitizePosition()
-      Object.keys(toastPosition).filter((pos) ->
-        toastPosition[pos]
-      ).join ' '
-
-    showSimpleToast = ->
-      toast =  $mdToast.simple().content('Simple Toast!').position(getToastPosition).hideDelay(2000);
-      console.log 'toasting', toast
-      $mdToast.show toast
-
-    showSimpleToast
-]
-
 #register services
 dianPing.factory 'navService', ->
-  nav = [];
-
+  nav = []
   nav.push
     name: 'Edit Profile'
     url: '/profile'
@@ -103,8 +62,37 @@ dianPing.factory 'navService', ->
     name: 'Messages'
   nav.push
     name: 'Preview'
-
   nav
+
+dianPing.factory 'toastService', [
+  '$rootScope'
+  '$mdToast'
+  ($rootScope, $mdToast) ->
+
+    showSimpleToast = (content, time)->
+      toast =  $mdToast.simple().content(if content then content else 'no content')
+      .position('top right').hideDelay(if time then time else 2000)
+      $mdToast.show toast
+
+    showSimpleToast
+]
+
+dianPing.factory 'photoUrlService',  ->
+  getPhotoUrl = (userId, type) ->
+    console.log '123'
+    if userId
+      if userId == Meteor.userId() and  Meteor.user() and Meteor.user().photoUrl
+        Meteor.user().photoUrl
+      else
+        user = getUserById(userId)
+        if user and user.services and user.services.facebook.id
+          if type
+            'http://graph.facebook.com/' + user.services.facebook.id + '/picture?type=' + type
+          else
+            'http://graph.facebook.com/' + user.services.facebook.id + '/picture'
+        else
+          'img/default.png'
+
 
 ##define functions
 @getUserById = (userId) ->
@@ -118,20 +106,3 @@ dianPing.factory 'navService', ->
 @getCurrentUsername = ->
   if Meteor.user() and Meteor.user().profile then  Meteor.user().profile.name else 'UNKNOWN'
 
-@getFacebookPhotoUrlById = (userId) ->
-  if userId
-    user = getUserById(userId)
-    #    console.log 'user: ', user
-    getFacebookPhotoUrlByUser user
-
-@getFacebookPhotoUrlByUser = (user, type) ->
-#  user = Meteor.user()
-#  console.log user
-  if user and user.services and user.services.facebook.id
-#    console.log  user.services.facebook.id
-    if type
-      'http://graph.facebook.com/' + user.services.facebook.id + '/picture?type=' + type
-    else
-      'http://graph.facebook.com/' + user.services.facebook.id + '/picture'
-  else
-    'img/default.png'

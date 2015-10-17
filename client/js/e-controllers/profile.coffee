@@ -41,12 +41,13 @@ dianPing.controller('profileCtrl', ($scope) ->
 dianPing.controller('photoCtrl', [
     '$scope'
     'navService'
-    ($scope, navService) ->
+    'photoUrlService'
+    ($scope, navService, photoUrlService) ->
 
       $scope.nav = navService
 
       Tracker.autorun ->
-        $scope.photoUrl = getFacebookPhotoUrlByUser Meteor.user(), 'large'
+        $scope.photoUrl = photoUrlService Meteor.userId(), 'large'
         console.log  $scope.photoUrl
 
       $scope.fileread = {};
@@ -79,8 +80,14 @@ dianPing.controller('photoUploadCtrl', [
 
       $scope.mode = 'determinate'
       $scope.photos = $meteor.collection(Photos).subscribe 'photos'
-#      $meteor.autorun ->
-#        $scope.photoCount = Session.get 'photoCount'
+
+      $scope.changePhoto = (photo) ->
+        Meteor.call 'updatePhotoUrl', photo.c.url, (err, data) ->
+          if err
+            console.log err
+          else
+            toastService 'Photo updated'
+
       $scope.maxPhotoCount = 15
 #      count does not work. totally have no idea..
 #      console.log $scope.photos, $scope.photos.length, Photos.find({}).count()
@@ -107,10 +114,11 @@ dianPing.controller('photoUploadCtrl', [
                   $scope.photoCount =  $scope.photoCount + 1
                   $scope.$apply()
                 $scope.mode = 'determinate'
+                toastService('Successfully uploaded')
             else
               $scope.mode = 'determinate'
         else
-          toastService()
+          toastService('No file chosen')
   ]
 #  console.log $scope.nav
 )

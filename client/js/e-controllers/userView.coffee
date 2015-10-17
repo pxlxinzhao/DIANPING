@@ -1,12 +1,13 @@
 dianPing.controller 'userViewCtrl', [
   '$scope'
   '$meteor'
-  ($scope, $meteor, dpService) ->
+  'photoUrlService'
+  ($scope, $meteor, dpService, photoUrlService) ->
     initial = true
     Tracker.autorun ->
       if Meteor.user()
 #        $scope.users = $meteor.collection Meteor.users
-        $scope.photoUrl = getFacebookPhotoUrlByUser Meteor.user()
+        $scope.photoUrl = photoUrlService Meteor.userId()
         $scope.username = getCurrentUsername()
         $scope.address = Meteor.user().address
         if initial or (!Meteor.user().position || !Meteor.user().address)
