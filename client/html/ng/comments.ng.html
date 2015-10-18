@@ -42,7 +42,7 @@
                             </div>
 
                             <!--reply message and button-->
-                            <div ng-show="comment.isReplying" class="reply-area">
+                            <div ng-show="comment.isReplying" ng-class="['reply-area', 'animated', {flipInX: comment.isReplying, flipOutX: !comment.isReplying}]">
                                 <!--reply display-->
                                 <ul>
                                     <li ng-repeat="reply in getReplies(comment)">
