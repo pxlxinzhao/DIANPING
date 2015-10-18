@@ -1,5 +1,5 @@
 <div ng-controller="comments">
-    <div class="comments-wrapper animated bounceInRight" md-theme="docs-dark">
+    <div class="comments-wrapper animated bounceInRight d2" md-theme="docs-dark">
         <!--ng-class="['comments-wrapper', {animated: initialization, bounceInRight: initialization}]"-->
         <div class="panel panel-default">
             <div class="panel-body comments-container">
@@ -11,7 +11,7 @@
                             </div>
                         </div>
                     </li>
-                    <li ng-repeat="comment in comments | commentFilter">
+                    <li class="comment-entry" ng-repeat="comment in comments | commentFilter">
                         <div class="img-container">
                             <img class="img img-circle img-normal" ng-src="{{getPhoto(comment.owner)}}" alt="avatar">
                             <p>{{getOwner(comment.owner)}}</p>
@@ -40,7 +40,8 @@
                                     <span ng-show="isLiked(comment)" ng-click="dislike(comment)" class="glyphicon glyphicon-heart liked"></span>
                                 </div>
                                 <div class="reply-icon" ng-click="toggleReplying(comment)">
-                                    <span class="glyphicon glyphicon-share-alt"></span>
+                                    <span ng-hide="comment.isReplying" class="glyphicon glyphicon-share-alt"></span>
+                                    <span ng-show="comment.isReplying" class="glyphicon glyphicon-share-alt green"></span>
                                 </div>
 
                                 <!--reply message and button-->

@@ -1,10 +1,31 @@
 @import "lib/lesshat.less";
 @import "../bootstrap/custom.bootstrap.import.less";
 
+.animated {
+  &.d1{
+    .animation-delay(0.33s);
+  }
+  &.d2{
+    .animation-delay(0.67s);
+  }
+  &.d3{
+    .animation-delay(1s);
+  }
+  &.d4{
+    .animation-delay(1.33s);
+  }
+  &.d5{
+    .animation-delay(1.67s);
+  }
+  &.d6{
+    .animation-delay(2s);
+  }
+
+}
+
 .panel {
   box-shadow: none;
 }
-
 .right {
   float: right;
 }
@@ -13,6 +34,9 @@
 }
 .white {
   color: #eee;
+}
+.green {
+  color: @theme-green;
 }
 .darkgrey {
   color: darkgray;
