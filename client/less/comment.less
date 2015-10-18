@@ -2,12 +2,16 @@
 
 //comments
 .comments-wrapper {
-  padding: 15px 0px;
+  padding: 15px;
   .md-list-item-text {
     color: #eee;
   }
+  .panel {
+    margin-bottom: 0px;
+  }
   .panel-body.comments-container {
     .box-shadow-default;
+    padding-top: 0px;
     //.default-transition;
   }
   ul {
@@ -15,9 +19,12 @@
     margin: 0px;
     padding: 0px;
     li {
+      padding-top: 10px;
+      border-bottom: 1px solid #666;
       .img-container {
         display: flex;
         float: left;
+        margin-top: 10px;
         .flex-direction(column);
         img {
           .align-self(center)
@@ -53,6 +60,12 @@
         color: @theme-green;
         border-top: 0px;
         background-color: @theme-background;
+        .panel-title {
+          margin-right: 7px;
+        }
+
+      }
+      .panel-body {
         .dist {
           .quick-transition;
           &:hover{
@@ -62,6 +75,9 @@
 
           color: @brand-warning;
           text-decoration: underline;
+        }
+        .darkgrey {
+          color: darkgray;
         }
       }
       .panel-footer {

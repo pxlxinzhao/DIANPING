@@ -4,6 +4,17 @@ html, body {
   //background-image: url('img/green-geometry.jpg');
   background-color: @theme-background;
   transition: 1s;
+  padding-top: 0px;
+  margin-top: 0px;
+}
+
+.nav-content {
+  position: relative;
+  z-index: 2;
+}
+.content {
+  position: relative;
+  z-index: 1;
 }
 
 //darkTheme customization
@@ -67,7 +78,7 @@ md-progress-linear {
 .compose-wrapper {
   & * {
     background-color: transparent;
-    .dark
+    .white
   }
   form {
     background-color: darken(@theme-background, 5%);

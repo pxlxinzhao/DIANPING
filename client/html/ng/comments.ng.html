@@ -1,81 +1,82 @@
-<div class="comments-wrapper" ng-controller="comments" md-theme="docs-dark">
-    <div class="panel panel-default">
-        <div class="panel-body comments-container">
-            <ul>
-                <li ng-show="!comments.length">
-                    <div class="panel panel-default">
-                        <div class="panel-body">
-                            <h4>There is nothing here yet..<br> Say something to the world!</h4>
+<div ng-controller="comments">
+    <div class="comments-wrapper animated bounceInRight" md-theme="docs-dark">
+        <!--ng-class="['comments-wrapper', {animated: initialization, bounceInRight: initialization}]"-->
+        <div class="panel panel-default">
+            <div class="panel-body comments-container">
+                <ul>
+                    <li ng-show="!comments.length">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <h4>There is nothing here yet..<br> Say something to the world!</h4>
+                            </div>
                         </div>
-                    </div>
-                </li>
-                <li ng-repeat="comment in comments | commentFilter">
-                    <div class="img-container">
-                        <img class="img img-circle img-normal" ng-src="{{getPhoto(comment.owner)}}" alt="avatar">
-                        <p>{{getOwner(comment.owner)}}</p>
-                    </div>
+                    </li>
+                    <li ng-repeat="comment in comments | commentFilter">
+                        <div class="img-container">
+                            <img class="img img-circle img-normal" ng-src="{{getPhoto(comment.owner)}}" alt="avatar">
+                            <p>{{getOwner(comment.owner)}}</p>
+                        </div>
 
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">
-                                {{comment.title}}
-                                <small>{{getTime(comment)}}</small>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">
+                                    {{comment.title}}
+                                </h3>
+                                <div class="comment-remove">
+                                    <span class="glyphicon glyphicon-minus-sign" ng-click="showConfirm(comment)"></span>
+                                </div>
+                                <!--<button class="comment-remove" ng-click="remove(comment)">Remove</button>-->
+                            </div>
+                            <div class="panel-body">
+                                <p>{{comment.message}}</p>
+                                <small class="darkgrey">{{getTime(comment)}}</small>
                                 <small class="dist">{{getDist(comment)}}</small>
-                            </h3>
-                            <div class="comment-remove">
-                                <span class="glyphicon glyphicon-minus-sign" ng-click="showConfirm(comment)"></span>
                             </div>
-                            <!--<button class="comment-remove" ng-click="remove(comment)">Remove</button>-->
-                        </div>
-                        <div class="panel-body">
-                            <p>{{comment.message}}</p>
-                        </div>
-                        <div class="panel-footer">
-                            <!--reply icon-->
+                            <div class="panel-footer">
+                                <!--reply icon-->
 
-                            <div class="reply-icon">
-                                <span ng-hide="isLiked(comment)" ng-click="like(comment)" class="glyphicon glyphicon-heart-empty"></span>
-                                <span ng-show="isLiked(comment)" ng-click="dislike(comment)" class="glyphicon glyphicon-heart liked"></span>
-                            </div>
-                            <div class="reply-icon" ng-click="toggleReplying(comment)">
-                                <span class="glyphicon glyphicon-share-alt"></span>
-                            </div>
+                                <div class="reply-icon">
+                                    <span ng-hide="isLiked(comment)" ng-click="like(comment)" class="glyphicon glyphicon-heart-empty"></span>
+                                    <span ng-show="isLiked(comment)" ng-click="dislike(comment)" class="glyphicon glyphicon-heart liked"></span>
+                                </div>
+                                <div class="reply-icon" ng-click="toggleReplying(comment)">
+                                    <span class="glyphicon glyphicon-share-alt"></span>
+                                </div>
 
-                            <!--reply message and button-->
-                            <div ng-show="comment.isReplying" ng-class="['reply-area', 'animated', {flipInX: comment.isReplying, flipOutX: !comment.isReplying}]">
-                                <!--reply display-->
-                                <ul>
-                                    <li ng-repeat="reply in getReplies(comment)">
-                                        <div class="reply-display">
-                                            <div class="reply-left">
-                                                <div class="img-container">
-                                                    <img class="img-circle img-normal" ng-src="{{getPhoto(reply.replyer)}}" alt="avatar">
-                                                    <p>{{getOwner(reply.replyer)}}</p>
+                                <!--reply message and button-->
+                                <div ng-show="comment.isReplying" ng-class="['reply-area', 'animated', {flipInX: comment.isReplying, flipOutX: !comment.isReplying}]">
+                                    <!--reply display-->
+                                    <ul>
+                                        <li ng-repeat="reply in getReplies(comment)">
+                                            <div class="reply-display">
+                                                <div class="reply-left">
+                                                    <div class="img-container">
+                                                        <img class="img-circle img-normal" ng-src="{{getPhoto(reply.replyer)}}" alt="avatar">
+                                                        <p>{{getOwner(reply.replyer)}}</p>
+                                                    </div>
+                                                    <p class="reply-message">{{reply.message}}</p>
                                                 </div>
-                                                <p class="reply-message">{{reply.message}}</p>
+                                                <div class="reply-right like-icon">
+                                                    <span class="glyphicon glyphicon-thumbs-up"></span>
+                                                </div>
                                             </div>
-                                            <div class="reply-right like-icon">
-                                                <span class="glyphicon glyphicon-thumbs-up"></span>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
+                                        </li>
+                                    </ul>
 
-                                <md-input-container flex>
-                                    <label>Message</label>
-                                    <input ng-model="comment.replyMessage">
-                                </md-input-container>
-                                <md-button ng-click="reply(comment)" aria-label="reply"
-                                           class="md-raised md-primary">
-                                    <span class="glyphicon glyphicon-send"></span>
-                                </md-button>
+                                    <md-input-container flex>
+                                        <label>Message</label>
+                                        <input ng-model="comment.replyMessage">
+                                    </md-input-container>
+                                    <md-button ng-click="reply(comment)" aria-label="reply"
+                                               class="md-raised md-primary">
+                                        <span class="glyphicon glyphicon-send"></span>
+                                    </md-button>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </li>
-            </ul>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
 </div>
-
-
