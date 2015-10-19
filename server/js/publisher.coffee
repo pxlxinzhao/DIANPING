@@ -8,7 +8,7 @@ Meteor.publish 'allLikes', ->
   Likes.find({userId: this.userId})
 
 Meteor.publish 'replies', ->
-  Replies.find({})
+  Replies.find({}, {sort: {createdTime: -1}})
 
 Meteor.publish 'photos', ->
   Photos.find({owner: this.userId})

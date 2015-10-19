@@ -11,7 +11,7 @@
                             </div>
                         </div>
                     </li>
-                    <li class="comment-entry" ng-repeat="comment in comments | commentFilter">
+                    <li class="comment-entry" ng-repeat="comment in comments | timeFilter">
                         <div class="img-container">
                             <img class="img img-circle img-normal" ng-src="{{getPhoto(comment.owner)}}" alt="avatar">
                             <p>{{getOwner(comment.owner)}}</p>
@@ -55,10 +55,17 @@
                                                         <img class="img-circle img-normal" ng-src="{{getPhoto(reply.replyer)}}" alt="avatar">
                                                         <p>{{getOwner(reply.replyer)}}</p>
                                                     </div>
-                                                    <p class="reply-message">{{reply.message}}</p>
+                                                    <p class="reply-message">
+                                                        {{reply.message}}
+                                                        <span class="time">{{getTime(reply)}}</span>
+                                                    </p>
+
                                                 </div>
                                                 <div class="reply-right like-icon">
                                                     <span class="glyphicon glyphicon-thumbs-up"></span>
+                                                    <div class="deleteBtn-wrapper">
+                                                        <span class="glyphicon glyphicon-minus-sign"></span>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </li>

@@ -20,7 +20,19 @@
   &.d6{
     .animation-delay(2s);
   }
+}
 
+.deleteBtn {
+  width: 16px;
+  height: 16px;
+  color: @theme-red;
+  font-size: 16px;
+  .quick-transition;
+  &:hover {
+    color: @theme-red;
+    .quick-transition;
+    .transform(scale(1.5));
+  }
 }
 
 .panel {

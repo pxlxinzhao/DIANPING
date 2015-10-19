@@ -33,9 +33,10 @@ dianPing.controller 'comments', [
       $scope.comments.splice($scope.comments.indexOf(comment), 1)
     $scope.getOwner = (id) ->
       getUsernameById(id)
-    $scope.getTime = (comment) ->
+    $scope.getTime = (obj) ->
 #      getUsernameById(comment.owner) + ' ' + moment(comment.createdTime).fromNow()
-      moment(comment.createdTime).fromNow()
+      time = obj.createdTime
+      moment(time).fromNow()
     $scope.getDist = (comment) ->
       if Meteor.user()
         if comment.position
@@ -88,7 +89,9 @@ dianPing.controller 'comments', [
           true
         else
           false
-      results
+
+      sorted = _.sortBy results, 'createdTime'
+      sorted.reverse()
 
     $scope.reply = (comment) ->
       if comment.replyMessage
@@ -97,12 +100,12 @@ dianPing.controller 'comments', [
             commentId: comment._id
             replyer: Meteor.userId()
             message: comment.replyMessage
-            createdDate: moment().valueOf()
+            createdTime: moment().valueOf()
           console.log 'created comment reply object'
           comment.replyMessage = ''
 
 ]
-.filter 'commentFilter', [ ->
+.filter 'timeFilter', [ ->
   (items) ->
     filtered = _.sortBy items, 'createdTime'
     filtered.reverse()
