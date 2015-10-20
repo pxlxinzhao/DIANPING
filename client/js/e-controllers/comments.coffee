@@ -93,16 +93,26 @@ dianPing.controller 'comments', [
       sorted = _.sortBy results, 'createdTime'
       sorted.reverse()
 
+    $scope.getRepliesCount = (comment) ->
+      results = _.filter $scope.replies, (reply) ->
+        if reply.commentId == comment._id
+          true
+        else
+          false
+      results.length
+
     $scope.reply = (comment) ->
       if comment.replyMessage
           $scope.replies.push
             owner: Meteor.userId()
             commentId: comment._id
-            replyer: Meteor.userId()
             message: comment.replyMessage
             createdTime: moment().valueOf()
           console.log 'created comment reply object'
           comment.replyMessage = ''
+
+    $scope.isOwner = (obj) ->
+      Meteor.userId() == obj.owner
 
 ]
 .filter 'timeFilter', [ ->

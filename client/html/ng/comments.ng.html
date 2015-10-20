@@ -22,7 +22,7 @@
                                 <h3 class="panel-title">
                                     {{comment.title}}
                                 </h3>
-                                <div class="comment-remove">
+                                <div class="comment-remove" ng-show="isOwner(comment)">
                                     <span class="glyphicon glyphicon-minus-sign" ng-click="showConfirm(comment)"></span>
                                 </div>
                                 <!--<button class="comment-remove" ng-click="remove(comment)">Remove</button>-->
@@ -43,6 +43,9 @@
                                     <span ng-hide="comment.isReplying" class="glyphicon glyphicon-share-alt"></span>
                                     <span ng-show="comment.isReplying" class="glyphicon glyphicon-share-alt green"></span>
                                 </div>
+                                <div>
+                                    {{getRepliesCount()}}
+                                </div>
 
                                 <!--reply message and button-->
                                 <div ng-show="comment.isReplying" ng-class="['reply-area', 'animated', {flipInX: comment.isReplying, flipOutX: !comment.isReplying}]">
@@ -58,12 +61,13 @@
                                                     <p class="reply-message">
                                                         {{reply.message}}
                                                         <span class="time">{{getTime(reply)}}</span>
+                                                        <span class="glyphicon glyphicon-thumbs-up"></span>
                                                     </p>
+
 
                                                 </div>
                                                 <div class="reply-right like-icon">
-                                                    <span class="glyphicon glyphicon-thumbs-up"></span>
-                                                    <div class="deleteBtn-wrapper">
+                                                    <div class="deleteBtn-wrapper" ng-show="isOwner(reply)">
                                                         <span class="glyphicon glyphicon-minus-sign"></span>
                                                     </div>
                                                 </div>

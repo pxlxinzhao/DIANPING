@@ -120,6 +120,12 @@
               p {
                 padding-bottom: 10px;
               }
+              span.glyphicon {
+                margin-top: 10px;
+                &:hover {
+                  color: @brand-primary;
+                }
+              }
               .time {
                 margin-top: 10px;
                 display: block;
@@ -132,6 +138,13 @@
             }
             .img-container {
               margin: 0px;
+              max-width: 39px;
+              word-wrap: break-word;
+              overflow: hidden;
+              p {
+                width: 100%;
+                text-align: center;
+              }
             }
           }
           .reply-display {
