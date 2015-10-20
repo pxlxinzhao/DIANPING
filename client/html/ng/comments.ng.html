@@ -34,18 +34,20 @@
                             </div>
                             <div class="panel-footer">
                                 <!--reply icon-->
+                                <div class="reply-icons">
+                                    <div class="reply-icon">
+                                        <span ng-hide="isLiked(comment)" ng-click="like(comment)" class="glyphicon glyphicon-heart-empty"></span>
+                                        <span ng-show="isLiked(comment)" ng-click="dislike(comment)" class="glyphicon glyphicon-heart liked"></span>
+                                    </div>
+                                    <div class="reply-icon" ng-click="toggleReplying(comment)">
+                                        <span ng-hide="comment.isReplying" class="glyphicon glyphicon-share-alt"></span>
+                                        <span ng-show="comment.isReplying" class="glyphicon glyphicon-share-alt green"></span>
+                                    </div>
+                                    <div class="reply-icon replies-count">
+                                        {{getRepliesCount(comment)}}
+                                    </div>
+                                </div>
 
-                                <div class="reply-icon">
-                                    <span ng-hide="isLiked(comment)" ng-click="like(comment)" class="glyphicon glyphicon-heart-empty"></span>
-                                    <span ng-show="isLiked(comment)" ng-click="dislike(comment)" class="glyphicon glyphicon-heart liked"></span>
-                                </div>
-                                <div class="reply-icon" ng-click="toggleReplying(comment)">
-                                    <span ng-hide="comment.isReplying" class="glyphicon glyphicon-share-alt"></span>
-                                    <span ng-show="comment.isReplying" class="glyphicon glyphicon-share-alt green"></span>
-                                </div>
-                                <div>
-                                    {{getRepliesCount()}}
-                                </div>
 
                                 <!--reply message and button-->
                                 <div ng-show="comment.isReplying" ng-class="['reply-area', 'animated', {flipInX: comment.isReplying, flipOutX: !comment.isReplying}]">
