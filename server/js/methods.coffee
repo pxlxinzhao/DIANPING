@@ -6,9 +6,11 @@ Meteor.methods
     if address
       Meteor.users.update { _id: Meteor.userId() }, { $set: address: address}
   'createLike': ->
-    count = Likes.find({_id: Meteor.userId()}).count()
+    count = Likes.find({userId: Meteor.userId()}).count()
     if count == 0
       Likes.insert({userId: Meteor.userId(), likes: []})
+    else
+#      Likes.update({userId: Meteor.userId()}, {})
   'countPhotos': ->
     count = Photos.find().count()
     console.log 'count:', count

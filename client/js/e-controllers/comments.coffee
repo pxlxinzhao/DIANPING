@@ -13,19 +13,22 @@ dianPing.controller 'comments', [
       }
     }
     $meteor.subscribe 'replies'
+    Meteor.call 'createLike'
 
     $scope.comments = $meteor.collection DianPings, false
     $scope.likes = $meteor.collection Likes
     $scope.replies = $meteor.collection Replies
 
-    if $scope.likes.length == 0 && Meteor.userId
-#      console.log 'before', $scope.likes
-      Meteor.call 'createLike'
-#      console.log 'after', $scope.likes
-    else if $scope.likes.length > 1
-      console.warn 'duplicated records in Likes'
-    else
-      console.warn 'Meteor.userId is null'
+#    console.log '$scope.likes.length: ', $scope.likes.length, $scope.likes
+
+#    if $scope.likes.length == 0 && Meteor.userId
+##      console.log 'before', $scope.likes
+#      Meteor.call 'createLike'
+##      console.log 'after', $scope.likes
+#    else if $scope.likes.length > 1
+#      console.warn 'duplicated records in Likes'
+#    else
+#      console.warn 'Meteor.userId is null'
 
     $scope.getPhoto = (id) ->
       photoUrlService id
@@ -49,22 +52,16 @@ dianPing.controller 'comments', [
             Math.round(calculateDistance(comment.position, userPos)*10)/10  + 'Km'
 
     $scope.isLiked = (comment) ->
-#      console.log  $scope.likes[0] && $scope.likes[0].likes.indexOf(comment._id)
       $scope.likes[0] && $scope.likes[0].likes.indexOf(comment._id) > -1
     $scope.like = (comment) ->
-      if comment
-        id = comment._id
-#        console.log id
-#        console.log 'calling like with ', $scope.isLiked comment
-        if (!$scope.isLiked comment)
-#          console.log $scope.likes[0]
+      if comment and !$scope.isLiked comment
+          id = comment._id
           $scope.likes[0].likes.push id
-#        console.log $scope.likes[0]
     $scope.dislike = (comment) ->
       if ($scope.likes[0] and $scope.isLiked(comment))
-        $scope.likes[0].likes.splice $scope.likes[0].likes.indexOf comment._id, 1
-        $scope.likes[0].likes.splice $scope.likes[0].likes.indexOf 'null', 1
-#      console.log $scope.likes[0]
+        index = $scope.likes[0].likes.indexOf comment._id
+        console.log index
+        $scope.likes[0].likes.splice index,1
 
     $scope.showConfirm = (comment) ->
 # Appending dialog to document.body to cover sidenav in docs app
