@@ -24,3 +24,4 @@ Photos.allow
 @Followers = new Mongo.Collection 'followers'
 @Profiles = new Mongo.Collection 'profiles'
 @Replies = new Mongo.Collection 'replies'
+@Hates = new Mongo.Collection 'hates'

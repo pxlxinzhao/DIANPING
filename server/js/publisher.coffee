@@ -7,6 +7,9 @@ Meteor.publish 'allComments', ->
 Meteor.publish 'allLikes', ->
   Likes.find({})
 
+Meteor.publish 'allHates', ->
+  Hates.find({})
+
 Meteor.publish 'replies', ->
   Replies.find({}, {sort: {createdTime: -1}})
 

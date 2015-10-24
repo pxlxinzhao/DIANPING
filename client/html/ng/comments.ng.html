@@ -69,7 +69,9 @@
                                                         <span ng-click="like(reply)" ng-hide="isLiked(reply)" class="glyphicon glyphicon-thumbs-up"></span>
                                                         <span ng-click="dislike(reply)" ng-show="isLiked(reply)" class="glyphicon glyphicon-thumbs-up liked"></span>
                                                         <span ng-class="{liked: isLiked(reply)}">{{likeCount(reply)}}</span>
-
+                                                        <span ng-click="hate(reply)" ng-hide="isHated(reply)" class="glyphicon glyphicon-thumbs-down margin-left-small"></span>
+                                                        <span ng-click="dishate(reply)" ng-show="isHated(reply)" class="glyphicon glyphicon-thumbs-down hated margin-left-small"></span>
+                                                        <span ng-class="{hated: isHated(reply)}">{{hateCount(reply)}}</span>
                                                     </p>
 
 

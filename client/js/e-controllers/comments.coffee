@@ -16,6 +16,7 @@ dianPing.controller 'comments', [
 
     $scope.comments = $meteor.collection DianPings, false
     $scope.likes = $meteor.collection(Likes).subscribe('allLikes')
+    $scope.hates = $meteor.collection(Hates).subscribe('allHates')
     $scope.replies = $meteor.collection Replies
 
     $scope.getPhoto = (id) ->
@@ -44,6 +45,7 @@ dianPing.controller 'comments', [
         like = Likes.findOne({target: target._id, user: Meteor.userId()})
         !!like
     $scope.like = (target) ->
+      console.log 'calling like in comment'
       ok = target and !$scope.isLiked target
       if ok
         $scope.likes.push
@@ -53,6 +55,21 @@ dianPing.controller 'comments', [
       Meteor.call 'deleteLike', target._id
     $scope.likeCount = (target) ->
       Likes.find({target: target._id}).count()
+
+    $scope.isHated = (target) ->
+      if target
+        like = Hates.findOne({target: target._id, user: Meteor.userId()})
+        !!like
+    $scope.hate = (target) ->
+      ok = target and !$scope.isHated target
+      if ok
+        $scope.hates.push
+          target: target._id
+          user: Meteor.userId()
+    $scope.dishate = (target) ->
+      Meteor.call 'deleteHate', target._id
+    $scope.hateCount = (target) ->
+      Hates.find({target: target._id}).count()
 
 
     $scope.showConfirm = (comment) ->

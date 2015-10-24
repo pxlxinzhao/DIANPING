@@ -7,6 +7,8 @@ Meteor.methods
       Meteor.users.update { _id: Meteor.userId() }, { $set: address: address}
   'deleteLike': (id) ->
     Likes.remove({target: id, user: Meteor.userId()})
+  'deleteHate': (id) ->
+    Hates.remove({target: id, user: Meteor.userId()})
   'countPhotos': ->
     count = Photos.find().count()
     count
