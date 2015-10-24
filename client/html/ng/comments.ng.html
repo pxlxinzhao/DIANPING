@@ -35,20 +35,26 @@
                             <div class="panel-footer">
                                 <!--reply icon-->
                                 <div class="reply-icons">
-                                    <div class="reply-icon">
-                                        <span ng-hide="isLiked(comment)" ng-click="like(comment)" class="glyphicon glyphicon-heart-empty"></span>
-                                        <span ng-show="isLiked(comment)" ng-click="dislike(comment)" class="glyphicon glyphicon-heart liked"></span>
+                                    <div class="reply-like-dislike">
+                                        <like-dislike target="comment"></like-dislike>
                                     </div>
-                                    <div class="reply-icon count">
-                                        {{likeCount(comment)}}
+                                    <div class="reply-right">
+                                        <div class="reply-icon">
+                                            <span ng-hide="isLiked(comment)" ng-click="like(comment)" class="glyphicon glyphicon-heart-empty"></span>
+                                            <span ng-show="isLiked(comment)" ng-click="dislike(comment)" class="glyphicon glyphicon-heart liked"></span>
+                                        </div>
+                                        <div class="reply-icon count">
+                                            {{likeCount(comment)}}
+                                        </div>
+                                        <div class="reply-icon margin-left-small" ng-click="toggleReplying(comment)">
+                                            <span ng-hide="comment.isReplying" class="glyphicon glyphicon-share-alt"></span>
+                                            <span ng-show="comment.isReplying" class="glyphicon glyphicon-share-alt green"></span>
+                                        </div>
+                                        <div class="reply-icon count fadeIn">
+                                            {{getRepliesCount(comment)}}
+                                        </div>
                                     </div>
-                                    <div class="reply-icon" ng-click="toggleReplying(comment)">
-                                        <span ng-hide="comment.isReplying" class="glyphicon glyphicon-share-alt"></span>
-                                        <span ng-show="comment.isReplying" class="glyphicon glyphicon-share-alt green"></span>
-                                    </div>
-                                    <div class="reply-icon count">
-                                        {{getRepliesCount(comment)}}
-                                    </div>
+
                                 </div>
 
 
@@ -66,12 +72,7 @@
                                                     <p class="reply-message">
                                                         {{reply.message}}
                                                         <span class="time">{{getTime(reply)}}</span>
-                                                        <span ng-click="like(reply)" ng-hide="isLiked(reply)" class="glyphicon glyphicon-thumbs-up"></span>
-                                                        <span ng-click="dislike(reply)" ng-show="isLiked(reply)" class="glyphicon glyphicon-thumbs-up liked"></span>
-                                                        <span ng-class="{liked: isLiked(reply)}">{{likeCount(reply)}}</span>
-                                                        <span ng-click="hate(reply)" ng-hide="isHated(reply)" class="glyphicon glyphicon-thumbs-down margin-left-small"></span>
-                                                        <span ng-click="dishate(reply)" ng-show="isHated(reply)" class="glyphicon glyphicon-thumbs-down hated margin-left-small"></span>
-                                                        <span ng-class="{hated: isHated(reply)}">{{hateCount(reply)}}</span>
+                                                        <like-dislike target="reply"></like-dislike>
                                                     </p>
 
 

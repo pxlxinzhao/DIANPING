@@ -80,17 +80,37 @@
         background-color: @theme-background;
         color: #eee;
         font-size: 20px;
+
         div.reply-icons {
           display: flex;
+          font-size: 1.6rem;
+
           .align-items(center);
+          .justify-content(space-between);
+
+          span:not(.glyphicon){
+            font-size: 1.3rem;
+            color: darkgray;
+          }
+
+          div.reply-like-dislike{
+            span.liked {
+              color: @brand-primary;
+            }
+            span.hated {
+              color: @theme-red;
+            }
+          }
+
+          div.reply-right{
+            .align-self(flex-end);
+          }
 
           div.reply-icon {
             display: inline-block;
             &.count {
               color: darkgray;
               font-size: 1.3rem;
-              margin-right: 10px;
-              margin-left: 5px;
             }
             span {
               transition-duration: 0s;
@@ -125,9 +145,6 @@
               }
               span.glyphicon {
                 margin-top: 10px;
-              }
-              span.glyphicon:nth-child(0) {
-                margin-left: 50px;
               }
               span.liked {
                 color: @brand-primary;

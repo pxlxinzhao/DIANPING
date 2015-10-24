@@ -24,7 +24,7 @@
       <file leaf-file-name="comments.coffee" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/js/e-controllers/comments.coffee">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-4.185185">
+            <state vertical-scroll-proportion="-3.9074075">
               <caret line="60" column="73" selection-start-line="60" selection-start-column="73" selection-end-line="60" selection-end-column="73" />
               <folding />
             </state>
@@ -41,6 +41,16 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="nav.ng.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/client/html/ng/nav.ng.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-0.625">
+              <caret line="10" column="57" selection-start-line="10" selection-start-column="57" selection-end-line="10" selection-end-column="57" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="compose.ng.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/html/ng/compose.ng.html">
           <provider selected="true" editor-type-id="text-editor">
@@ -51,21 +61,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="comments.ng.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="comments.ng.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/client/html/ng/comments.ng.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-7.72549">
-              <caret line="91" column="91" selection-start-line="91" selection-start-column="91" selection-end-line="91" selection-end-column="91" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="methods.coffee" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/server/js/methods.coffee">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-7.7777777">
-              <caret line="14" column="18" selection-start-line="14" selection-start-column="18" selection-end-line="14" selection-end-column="18" />
+            <state vertical-scroll-proportion="0.7355372">
+              <caret line="61" column="141" selection-start-line="61" selection-start-column="141" selection-end-line="61" selection-end-column="141" />
               <folding />
             </state>
           </provider>
@@ -74,18 +74,38 @@
       <file leaf-file-name="index.less" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/less/index.less">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-28.529411">
+            <state vertical-scroll-proportion="-27.941177">
               <caret line="97" column="19" selection-start-line="97" selection-start-column="19" selection-end-line="97" selection-end-column="19" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="comment.less" pinned="false" current-in-tab="true">
+      <file leaf-file-name="comment.less" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/less/comment.less">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5295405">
-              <caret line="97" column="11" selection-start-line="97" selection-start-column="11" selection-end-line="97" selection-end-column="11" />
+            <state vertical-scroll-proportion="-3.304878">
+              <caret line="112" column="32" selection-start-line="112" selection-start-column="32" selection-end-line="112" selection-end-column="32" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="profileImg.coffee" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/client/js/d-directives/profileImg.coffee">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-8.333333">
+              <caret line="15" column="30" selection-start-line="15" selection-start-column="30" selection-end-line="15" selection-end-column="30" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="likesAndDislikes.coffee" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/client/js/d-directives/likesAndDislikes.coffee">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-2.7108433">
+              <caret line="15" column="36" selection-start-line="15" selection-start-column="36" selection-end-line="15" selection-end-column="36" />
               <folding />
             </state>
           </provider>
@@ -96,26 +116,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="-6.254902">
               <caret line="31" column="16" selection-start-line="31" selection-start-column="16" selection-end-line="31" selection-end-column="16" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="models.coffee" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/model/models.coffee">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-14.444445">
-              <caret line="26" column="36" selection-start-line="26" selection-start-column="36" selection-end-line="26" selection-end-column="36" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="myEnter.coffee" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/js/d-directives/myEnter.coffee">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-3.3333333">
-              <caret line="6" column="25" selection-start-line="6" selection-start-column="25" selection-end-line="6" selection-end-column="25" />
               <folding />
             </state>
           </provider>
@@ -166,7 +166,6 @@
         <option value="$PROJECT_DIR$/client/html/ng/userView.ng.html" />
         <option value="$PROJECT_DIR$/client/js/e-controllers/photo.coffee" />
         <option value="$PROJECT_DIR$/client/bootstrap/custom.bootstrap.less" />
-        <option value="$PROJECT_DIR$/client/js/d-directives/profileImg.coffee" />
         <option value="$PROJECT_DIR$/client/js/e-controllers/profile.coffee" />
         <option value="$PROJECT_DIR$/client/js/e-controllers/compose.coffee" />
         <option value="$PROJECT_DIR$/client/js/d-directives/myEnter.coffee" />
@@ -179,14 +178,15 @@
         <option value="$PROJECT_DIR$/client/less/index.less" />
         <option value="$PROJECT_DIR$/client/less/lib/general.less" />
         <option value="$PROJECT_DIR$/client/js/c-modules/dianping.coffee" />
-        <option value="$PROJECT_DIR$/client/js/d-directives/likesAndDislikes.coffee" />
         <option value="$PROJECT_DIR$/model/models.coffee" />
         <option value="$PROJECT_DIR$/server/js/publisher.coffee" />
         <option value="$PROJECT_DIR$/server/js/methods.coffee" />
         <option value="$PROJECT_DIR$/client/js/e-controllers/comments.coffee" />
         <option value="$PROJECT_DIR$/client/less/_import.less" />
-        <option value="$PROJECT_DIR$/client/html/ng/comments.ng.html" />
+        <option value="$PROJECT_DIR$/client/js/d-directives/profileImg.coffee" />
+        <option value="$PROJECT_DIR$/client/js/d-directives/likesAndDislikes.coffee" />
         <option value="$PROJECT_DIR$/client/less/comment.less" />
+        <option value="$PROJECT_DIR$/client/html/ng/comments.ng.html" />
       </list>
     </option>
   </component>
@@ -198,8 +198,8 @@
     <order />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="320" />
-    <option name="y" value="27" />
+    <option name="x" value="396" />
+    <option name="y" value="22" />
     <option name="width" value="1013" />
     <option name="height" value="806" />
   </component>
@@ -574,7 +574,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="320" y="27" width="1013" height="806" extended-state="0" />
+    <frame x="396" y="22" width="1013" height="806" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2114846" sideWeight="0.61491936" order="3" side_tool="false" content_ui="tabs" />
@@ -844,14 +844,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/html/ng/nav.ng.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.25">
-          <caret line="10" column="57" selection-start-line="10" selection-start-column="57" selection-end-line="10" selection-end-column="57" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/html/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-10.0">
@@ -916,22 +908,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/js/d-directives/likesAndDislikes.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.0454545">
-          <caret line="12" column="3" selection-start-line="12" selection-start-column="3" selection-end-line="12" selection-end-column="3" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/js/d-directives/profileImg.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.555555">
-          <caret line="19" column="3" selection-start-line="0" selection-start-column="0" selection-end-line="19" selection-end-column="3" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/js/d-directives/myEnter.coffee">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-3.3333333">
@@ -972,22 +948,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/js/e-controllers/comments.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.185185">
-          <caret line="60" column="73" selection-start-line="60" selection-start-column="73" selection-end-line="60" selection-end-column="73" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/less/index.less">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-28.529411">
-          <caret line="97" column="19" selection-start-line="97" selection-start-column="19" selection-end-line="97" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/less/_import.less">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-6.254902">
@@ -996,18 +956,58 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/html/ng/comments.ng.html">
+    <entry file="file://$PROJECT_DIR$/client/html/ng/nav.ng.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.72549">
-          <caret line="91" column="91" selection-start-line="91" selection-start-column="91" selection-end-line="91" selection-end-column="91" />
+        <state vertical-scroll-proportion="-0.625">
+          <caret line="10" column="57" selection-start-line="10" selection-start-column="57" selection-end-line="10" selection-end-column="57" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/js/e-controllers/comments.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.9074075">
+          <caret line="60" column="73" selection-start-line="60" selection-start-column="73" selection-end-line="60" selection-end-column="73" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/less/index.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-27.941177">
+          <caret line="97" column="19" selection-start-line="97" selection-start-column="19" selection-end-line="97" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/js/d-directives/likesAndDislikes.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.7108433">
+          <caret line="15" column="36" selection-start-line="15" selection-start-column="36" selection-end-line="15" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/js/d-directives/profileImg.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-8.333333">
+          <caret line="15" column="30" selection-start-line="15" selection-start-column="30" selection-end-line="15" selection-end-column="30" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/client/less/comment.less">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5295405">
-          <caret line="97" column="11" selection-start-line="97" selection-start-column="11" selection-end-line="97" selection-end-column="11" />
+        <state vertical-scroll-proportion="-3.304878">
+          <caret line="112" column="32" selection-start-line="112" selection-start-column="32" selection-end-line="112" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/html/ng/comments.ng.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7355372">
+          <caret line="61" column="141" selection-start-line="61" selection-start-column="141" selection-end-line="61" selection-end-column="141" />
           <folding />
         </state>
       </provider>

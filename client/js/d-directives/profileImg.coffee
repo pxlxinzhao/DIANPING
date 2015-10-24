@@ -10,9 +10,7 @@ dianPing.directive 'profileImg', ->
   link: (scope, elem, attrs) ->
     span = elem.find('span')
     span.hide()
-
     span.css 'cursor', 'default'
-
     elem.bind 'mouseover', ->
       span.show()
     elem.bind 'mouseleave', ->
