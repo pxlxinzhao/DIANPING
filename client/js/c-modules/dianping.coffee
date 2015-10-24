@@ -44,6 +44,9 @@ dianPing.controller 'rootCtrl', [
   '$rootScope'
   ($scope, $rootScope, $mdToast, $document) ->
       $rootScope.getCurrentUsername = getCurrentUsername
+      #this guy is not working
+      $rootScope.print = (obj) ->
+        console.log obj
 
 ]
 

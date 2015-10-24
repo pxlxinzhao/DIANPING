@@ -40,7 +40,7 @@
                                         <span ng-show="isLiked(comment)" ng-click="dislike(comment)" class="glyphicon glyphicon-heart liked"></span>
                                     </div>
                                     <div class="reply-icon count">
-                                        {{comment.likes}}
+                                        {{likeCount(comment)}}
                                     </div>
                                     <div class="reply-icon" ng-click="toggleReplying(comment)">
                                         <span ng-hide="comment.isReplying" class="glyphicon glyphicon-share-alt"></span>
@@ -60,20 +60,23 @@
                                             <div class="reply-display">
                                                 <div class="reply-left">
                                                     <div class="img-container">
-                                                        <img class="img-circle img-normal" ng-src="{{getPhoto(reply.replyer)}}" alt="avatar">
-                                                        <p>{{getOwner(reply.replyer)}}</p>
+                                                        <img class="img-circle img-normal" ng-src="{{getPhoto(reply.user)}}" alt="avatar">
+                                                        <p>{{getOwner(reply.user)}}</p>
                                                     </div>
                                                     <p class="reply-message">
                                                         {{reply.message}}
                                                         <span class="time">{{getTime(reply)}}</span>
-                                                        <span class="glyphicon glyphicon-thumbs-up"></span>
+                                                        <span ng-click="like(reply)" ng-hide="isLiked(reply)" class="glyphicon glyphicon-thumbs-up"></span>
+                                                        <span ng-click="dislike(reply)" ng-show="isLiked(reply)" class="glyphicon glyphicon-thumbs-up liked"></span>
+                                                        <span ng-class="{liked: isLiked(reply)}">{{likeCount(reply)}}</span>
+
                                                     </p>
 
 
                                                 </div>
                                                 <div class="reply-right like-icon">
                                                     <div class="deleteBtn-wrapper" ng-show="isOwner(reply)">
-                                                        <span class="glyphicon glyphicon-minus-sign"></span>
+                                                        <span ng-click="deleteReply(reply)" class="glyphicon glyphicon-minus-sign"></span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -82,7 +85,7 @@
 
                                     <md-input-container flex>
                                         <label>Message</label>
-                                        <input ng-model="comment.replyMessage">
+                                        <input ng-model="comment.replyMessage" my-enter="reply(comment)">
                                     </md-input-container>
                                     <md-button ng-click="reply(comment)" aria-label="reply"
                                                class="md-raised md-primary">

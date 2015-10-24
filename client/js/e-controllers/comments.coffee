@@ -13,22 +13,10 @@ dianPing.controller 'comments', [
       }
     }
     $meteor.subscribe 'replies'
-    Meteor.call 'createLike'
 
     $scope.comments = $meteor.collection DianPings, false
-    $scope.likes = $meteor.collection Likes
+    $scope.likes = $meteor.collection(Likes).subscribe('allLikes')
     $scope.replies = $meteor.collection Replies
-
-#    console.log '$scope.likes.length: ', $scope.likes.length, $scope.likes
-
-#    if $scope.likes.length == 0 && Meteor.userId
-##      console.log 'before', $scope.likes
-#      Meteor.call 'createLike'
-##      console.log 'after', $scope.likes
-#    else if $scope.likes.length > 1
-#      console.warn 'duplicated records in Likes'
-#    else
-#      console.warn 'Meteor.userId is null'
 
     $scope.getPhoto = (id) ->
       photoUrlService id
@@ -51,17 +39,21 @@ dianPing.controller 'comments', [
           if comment.position and userPos
             Math.round(calculateDistance(comment.position, userPos)*10)/10  + 'Km'
 
-    $scope.isLiked = (comment) ->
-      $scope.likes[0] && $scope.likes[0].likes.indexOf(comment._id) > -1
-    $scope.like = (comment) ->
-      if comment and !$scope.isLiked comment
-          id = comment._id
-          $scope.likes[0].likes.push id
-    $scope.dislike = (comment) ->
-      if ($scope.likes[0] and $scope.isLiked(comment))
-        index = $scope.likes[0].likes.indexOf comment._id
-        console.log index
-        $scope.likes[0].likes.splice index,1
+    $scope.isLiked = (target) ->
+      if target
+        like = Likes.findOne({target: target._id, user: Meteor.userId()})
+        !!like
+    $scope.like = (target) ->
+      ok = target and !$scope.isLiked target
+      if ok
+        $scope.likes.push
+          target: target._id
+          user: Meteor.userId()
+    $scope.dislike = (target) ->
+      Meteor.call 'deleteLike', target._id
+    $scope.likeCount = (target) ->
+      Likes.find({target: target._id}).count()
+
 
     $scope.showConfirm = (comment) ->
 # Appending dialog to document.body to cover sidenav in docs app
@@ -75,41 +67,44 @@ dianPing.controller 'comments', [
       )
 
     $scope.toggleReplying = (comment) ->
-      if comment.isReplying
-        comment.isReplying = false
-      else
-        comment.isReplying = true
+      comment.isReplying = !comment.isReplying
     $scope.getReplies = (comment) ->
 #      console.log $scope.replies
       results = _.filter $scope.replies, (reply) ->
-        if reply.commentId == comment._id
-          true
-        else
-          false
+        return reply.commentId == comment._id
 
       sorted = _.sortBy results, 'createdTime'
       sorted.reverse()
 
     $scope.getRepliesCount = (comment) ->
       results = _.filter $scope.replies, (reply) ->
-        if reply.commentId == comment._id
-          true
-        else
-          false
+        return reply.commentId == comment._id
       results.length
 
     $scope.reply = (comment) ->
       if comment.replyMessage
           $scope.replies.push
-            owner: Meteor.userId()
+            user: Meteor.userId()
             commentId: comment._id
             message: comment.replyMessage
             createdTime: moment().valueOf()
           console.log 'created comment reply object'
           comment.replyMessage = ''
+    $scope.deleteReply = (reply) ->
+      confirm = $mdDialog.confirm().title('Would you like to delete your reply?')
+        .content('This action can not be reverted')
+        .ariaLabel('Lucky day')
+        .ok('Delete')
+        .cancel('Cancel')
+      $mdDialog.show(confirm).then (->
+        $scope.replies.splice $scope.replies.indexOf(reply), 1
+      )
 
     $scope.isOwner = (obj) ->
-      Meteor.userId() == obj.owner
+      Meteor.userId() == obj.owner || obj.user || obj.userId
+
+    $scope.print = (obj) ->
+      console.log obj
 
 ]
 .filter 'timeFilter', [ ->
@@ -123,7 +118,6 @@ calculateDistance = (coord1, coord2, unit) ->
   if coord1 and coord2
     if !unit
       unit = 'K'
-#    console.log coord1, coord2
     lat1 = coord1.latitude
     lat2 = coord2.latitude
     lon1 = coord1.longitude

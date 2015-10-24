@@ -5,15 +5,10 @@ Meteor.methods
   'updateCurrentUserAddress': (address) ->
     if address
       Meteor.users.update { _id: Meteor.userId() }, { $set: address: address}
-  'createLike': ->
-    count = Likes.find({userId: Meteor.userId()}).count()
-    if count == 0
-      Likes.insert({userId: Meteor.userId(), likes: []})
-    else
-#      Likes.update({userId: Meteor.userId()}, {})
+  'deleteLike': (id) ->
+    Likes.remove({target: id, user: Meteor.userId()})
   'countPhotos': ->
     count = Photos.find().count()
-    console.log 'count:', count
     count
   'updatePhotoId': (photo)->
     Meteor.users.upsert {_id: Meteor.userId()}, {$set: photoId: photo._id}

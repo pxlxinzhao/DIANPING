@@ -92,26 +92,19 @@
               margin-right: 15px;
               margin-left: 5px;
             }
-            span:hover {
-              color: @theme-red;
-              &.glyphicon-share-alt:hover {
-                color: @theme-green;
-              }
+            span {
+              transition-duration: 0s;
             }
           }
         }
 
         div.reply-area {
           display: flex;
+          margin-top: 10px;
           .flex-wrap(wrap);
           //.default-transition;
           .align-items(flex-start);
 
-          &.ng-hide {
-            //.default-transition;
-            //height: 0px;
-            //opacity: 0;
-          }
           label, input {
             font-size: 1.4rem;
           }
@@ -120,7 +113,6 @@
             color: white;
             margin-bottom: 26px;
             width: 30px;
-
           }
           ul {
             .flex(1 0 100%);
@@ -133,9 +125,9 @@
               }
               span.glyphicon {
                 margin-top: 10px;
-                &:hover {
-                  color: @brand-primary;
-                }
+              }
+              span.liked {
+                color: @brand-primary;
               }
               .time {
                 margin-top: 10px;
