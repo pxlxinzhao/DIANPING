@@ -59,12 +59,12 @@ dianPing.factory 'navService', ->
   nav.push
     name: 'Photos'
     url: '/photo'
-  nav.push
-    name: 'Favorites'
-  nav.push
-    name: 'Messages'
-  nav.push
-    name: 'Preview'
+#  nav.push
+#    name: 'Favorites'
+#  nav.push
+#    name: 'Messages'
+#  nav.push
+#    name: 'Preview'
   nav
 
 dianPing.factory 'toastService', [
